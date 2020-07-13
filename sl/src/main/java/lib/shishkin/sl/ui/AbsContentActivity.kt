@@ -4,7 +4,10 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.sl.R
+import lib.shishkin.sl.observe.NetObservable
+import lib.shishkin.sl.provider.IObservableSubscriber
 import lib.shishkin.sl.provider.IRouterProvider
+import lib.shishkin.sl.provider.ObservableUnion
 
 abstract class AbsContentActivity : AbsActivity(), IRouterProvider,
     IObservableSubscriber {
@@ -119,21 +122,21 @@ abstract class AbsContentActivity : AbsActivity(), IRouterProvider,
     override fun onChange(name: String, obj: Any) {
         if (name == NetObservable.NAME) {
             if (obj == true) {
-                onConnected()
+                onNetworkConnected()
             } else if (obj == false) {
-                onDisConnected()
+                onNetworkDisConnected()
             }
         }
     }
 
-    private fun onConnected() {
+    open fun onNetworkConnected() {
         if (snackbar?.isShown == true) {
             snackbar?.dismiss()
             snackbar = null
         }
     }
 
-    private fun onDisConnected() {
+    open fun onNetworkDisConnected() {
         if (snackbar != null) {
             snackbar?.dismiss()
             snackbar = null
