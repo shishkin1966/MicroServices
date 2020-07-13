@@ -16,4 +16,10 @@ interface IProviderSubscriber : ISubscriber {
      * Событие - провайдер прекратил работу
      */
     fun onStopProvider(provider: IProvider)
+
+    /**
+     * Остановить
+     */
+    fun stop()
+
 }

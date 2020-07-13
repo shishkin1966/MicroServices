@@ -15,6 +15,7 @@ import android.util.DisplayMetrics
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.IdRes
 import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
@@ -260,6 +261,16 @@ class ApplicationUtils {
         }
 
         @JvmStatic
+        fun <V : View> findView(activity: Activity, @IdRes id: Int): V? {
+            return activity.findViewById<View>(id) as V?
+        }
+
+        @JvmStatic
+        fun <V : View> findView(view: View, @IdRes id: Int): V? {
+            return view.findViewById<View>(id) as V?
+        }
+
+        @JvmStatic
         fun showToast(context: Context, resId: Int, duration: Int, type: Int) {
             showToast(context, context.getString(resId), duration, type)
         }
@@ -373,7 +384,8 @@ class ApplicationUtils {
         @JvmStatic
         fun isGooglePlayServices(context: Context?): Boolean {
             if (context != null) {
-                val resultCode = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context)
+                val resultCode =
+                    GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context)
                 if (ConnectionResult.SUCCESS == resultCode) {
                     return true
                 }

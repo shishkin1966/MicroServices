@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.R
 import lib.shishkin.sl.action.IAction
@@ -63,10 +64,6 @@ abstract class AbsActivity : AppCompatActivity(), IActivity {
 
     override fun getProviderSubscription(): List<String> {
         return listOf(ActivityUnion.NAME)
-    }
-
-    override fun clearBackStack() {
-        BackStack.clearBackStack(this)
     }
 
     override fun onRequestPermissionsResult(

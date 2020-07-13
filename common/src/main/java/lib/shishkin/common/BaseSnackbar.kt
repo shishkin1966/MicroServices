@@ -10,7 +10,6 @@ import androidx.annotation.StringRes
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.snackbar.Snackbar
 
-
 class BaseSnackbar {
     fun make(view: View, @StringRes titleRes: Int, duration: Int, type: Int): Snackbar {
         val context = view.context
