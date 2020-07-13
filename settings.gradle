@@ -1,0 +1,4 @@
+include ':common'
+include ':sl'
+include ':app'
+rootProject.name = "MicroServices"
