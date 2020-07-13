@@ -121,4 +121,8 @@ interface IRouterProvider : IProviderSubscriber {
      */
     fun showRootFragment()
 
+    /**
+     * Очитстить BackStack
+     */
+    fun clearBackStack()
 }

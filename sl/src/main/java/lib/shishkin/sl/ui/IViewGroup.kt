@@ -20,8 +20,4 @@ interface IViewGroup {
      */
     fun getRootView(): View?
 
-    /**
-     * Закрыть
-     */
-    fun stop()
 }

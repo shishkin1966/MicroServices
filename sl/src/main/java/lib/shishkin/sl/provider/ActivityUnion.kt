@@ -2,9 +2,12 @@ package lib.shishkin.sl.provider
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.sl.AbsUnion
 import lib.shishkin.sl.IProvider
+import lib.shishkin.sl.R
 import lib.shishkin.sl.lifecycle.Lifecycle
+import lib.shishkin.sl.ui.AbsActivity
 import lib.shishkin.sl.ui.BackStack
 import lib.shishkin.sl.ui.IActivity
 import java.lang.ref.WeakReference
