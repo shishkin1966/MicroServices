@@ -1,11 +1,10 @@
 package lib.shishkin.sl.ui
 
 import android.content.pm.PackageManager
-import android.view.View
-import androidx.annotation.IdRes
-
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import lib.shishkin.common.ApplicationUtils
