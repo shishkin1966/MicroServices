@@ -2,7 +2,6 @@ package lib.shishkin.sl.provider
 
 import android.app.Application
 import android.content.Context
-import lib.shishkin.sl.BuildConfig
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.IServiceLocator
 

@@ -8,8 +8,6 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
-import android.os.Build
-import androidx.annotation.RequiresApi
 import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.common.Connectivity
 import lib.shishkin.sl.provider.ApplicationProvider
