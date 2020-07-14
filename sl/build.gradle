@@ -42,4 +42,7 @@ dependencies {
     // Stream API
     implementation 'com.annimon:stream:1.2.1'
 
+    // логирование приложениия
+    implementation 'com.github.snowdream.android.util:log:1.2.0'
+
 }
