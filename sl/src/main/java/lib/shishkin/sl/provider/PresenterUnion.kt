@@ -11,8 +11,9 @@ class PresenterUnion : AbsSmallUnion<IPresenter>(), IPresenterUnion {
 
     override fun register(subscriber: IPresenter): Boolean {
         return if (subscriber.isValid()) {
-            super.register(subscriber)
-            true
+            if (subscriber.isRegister()) {
+                super.register(subscriber)
+            } else true
         } else false
     }
 
