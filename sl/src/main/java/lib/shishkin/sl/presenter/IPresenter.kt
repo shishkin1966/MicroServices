@@ -7,4 +7,10 @@ import lib.shishkin.sl.provider.IMessengerSubscriber
 
 interface IPresenter : ILifecycleListener, IActionListener, IActionHandler,
     IMessengerSubscriber {
+    /**
+     * Флаг - регистрировать презентер в объединении презентеров
+     *
+     * @return true - регистрировать (презентер - глобальный)
+     */
+    fun isRegister(): Boolean
 }
