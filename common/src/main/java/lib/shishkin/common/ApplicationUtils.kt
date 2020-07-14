@@ -19,6 +19,8 @@ import androidx.annotation.IdRes
 import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
+import com.annimon.stream.Stream
+import com.annimon.stream.function.Predicate
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.material.snackbar.Snackbar
@@ -258,6 +260,16 @@ class ApplicationUtils {
                         .show()
                 }
             })
+        }
+
+        @JvmStatic
+        fun <T> filter(list: Collection<T>, predicate: Predicate<in T>): Stream<T> {
+            return Stream.of(list).filter(predicate)
+        }
+
+        @JvmStatic
+        fun <T> sort(list: Collection<T>, comparator: Comparator<in T>): Stream<T> {
+            return Stream.of(list).sorted(comparator)
         }
 
         @JvmStatic

@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.sl.R
+import lib.shishkin.sl.action.HideKeyboardAction
 import lib.shishkin.sl.observe.NetObservable
 import lib.shishkin.sl.provider.IObservableSubscriber
 import lib.shishkin.sl.provider.IRouterProvider
