@@ -49,7 +49,7 @@ open class ApplicationProvider : Application(),
     }
 
     override fun getName(): String {
-        return BuildConfig.APPLICATION_ID
+        return ""
     }
 
     override fun isValid(): Boolean {
