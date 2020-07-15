@@ -197,9 +197,10 @@ class ActivityUnion : AbsUnion<IActivity>(), IActivityUnion {
                             listener,
                             null,
                             helpMessage
-                        ).setPositiveButton(R.string.setting).setNegativeButton(R.string.cancel).setCancelable(
-                            false
-                        )
+                        ).setPositiveButton(R.string.setting).setNegativeButton(R.string.cancel)
+                            .setCancelable(
+                                false
+                            )
                     )
                 } else {
                     ActivityCompat.requestPermissions(

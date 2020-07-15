@@ -51,8 +51,10 @@ class NetObservable : AbsObservable() {
                     context,
                     Context.CONNECTIVITY_SERVICE
                 )
-            connectivityManager.registerNetworkCallback(builder.build(),
-                callback!!)
+            connectivityManager.registerNetworkCallback(
+                builder.build(),
+                callback!!
+            )
         } else {
             val intentFilter = IntentFilter()
             intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION)

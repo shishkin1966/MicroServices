@@ -6,5 +6,6 @@ import lib.shishkin.sl.action.IActionListener
 import lib.shishkin.sl.lifecycle.ILifecycle
 import lib.shishkin.sl.lifecycle.ILifecycleObservable
 
-interface IActivity : IProviderSubscriber, ILifecycle, IActionListener, IActionHandler, ILifecycleObservable, IViewGroup, IPermissionListener {
+interface IActivity : IProviderSubscriber, ILifecycle, IActionListener, IActionHandler,
+    ILifecycleObservable, IViewGroup, IPermissionListener {
 }
