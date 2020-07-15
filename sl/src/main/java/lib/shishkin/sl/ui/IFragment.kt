@@ -7,7 +7,8 @@ import lib.shishkin.sl.lifecycle.ILifecycle
 import lib.shishkin.sl.lifecycle.ILifecycleObservable
 
 
-interface IFragment : ISubscriber, ILifecycle, IActionListener, IPermissionListener, IActionHandler, IViewGroup,
+interface IFragment : ISubscriber, ILifecycle, IActionListener, IPermissionListener, IActionHandler,
+    IViewGroup,
     ILifecycleObservable {
 
     fun stop()

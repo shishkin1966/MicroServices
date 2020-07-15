@@ -17,9 +17,6 @@ import lib.shishkin.common.KeyboardRunnable
 import lib.shishkin.sl.IValidated
 import lib.shishkin.sl.R
 import lib.shishkin.sl.action.*
-import lib.shishkin.sl.provider.ActivityUnion
-import lib.shishkin.sl.provider.ApplicationProvider
-import lib.shishkin.sl.provider.IActivityUnion
 import lib.shishkin.sl.ui.AbsContentActivity
 import lib.shishkin.sl.ui.AbsFragment
 

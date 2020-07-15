@@ -1,8 +1,8 @@
 package lib.shishkin.sl
 
 /**
-* Интерфейс провайдера - объекта предоставлющий сервис
-*/
+ * Интерфейс провайдера - объекта предоставлющий сервис
+ */
 interface IProvider : INamed, IValidated, Comparable<IProvider> {
     /**
      * Получить тип провайдера
