@@ -123,6 +123,14 @@ abstract class AbsActivity : AppCompatActivity(), IActivity {
         lifecycleObservable.addLifecycleObserver(stateable)
     }
 
+    override fun removeLifecycleObserver(stateable: ILifecycle) {
+        lifecycleObservable.removeLifecycleObserver(stateable)
+    }
+
+    override fun clearLifecycleObservers() {
+        lifecycleObservable.clearLifecycleObservers()
+    }
+
     override fun addAction(action: IAction) {
         ApplicationUtils.runOnUiThread(Runnable {
             when (getState()) {

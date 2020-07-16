@@ -2,16 +2,11 @@ package lib.shishkin.sl.model
 
 import lib.shishkin.sl.IValidated
 import lib.shishkin.sl.lifecycle.ILifecycle
+import lib.shishkin.sl.lifecycle.ILifecycleObservable
 import lib.shishkin.sl.ui.IViewGroup
 
 
-interface IModelView : IValidated, IViewGroup {
-    /**
-     * Добавить слушателя к ModelView объекту
-     *
-     * @param stateable stateable объект
-     */
-    fun addStateObserver(stateable: ILifecycle)
+interface IModelView : IValidated, IViewGroup, ILifecycleObservable {
 
     /**
      * Закрыть ModelView объект

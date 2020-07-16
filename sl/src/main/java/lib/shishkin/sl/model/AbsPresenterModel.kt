@@ -8,7 +8,7 @@ abstract class AbsPresenterModel(modelView: IModelView) : AbsModel(modelView), I
 
     override fun setPresenter(presenter: IModelPresenter) {
         this.presenter = presenter
-        super.addStateObserver(this.presenter)
+        super.addLifecycleObserver(this.presenter)
     }
 
     override fun <C> getPresenter(): C {
