@@ -1,11 +1,13 @@
 package lib.shishkin.sl.provider
 
-import android.app.Application
 import android.content.Context
+import androidx.multidex.MultiDex
+import androidx.multidex.MultiDexApplication
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.IServiceLocator
 
-open class ApplicationProvider : Application(),
+
+open class ApplicationProvider : MultiDexApplication(),
     IApplicationProvider {
     private var isExit = false
 
@@ -13,6 +15,12 @@ open class ApplicationProvider : Application(),
         val instance = ApplicationProvider()
         lateinit var appContext: Context
         var serviceLocator: IServiceLocator? = null
+    }
+
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+
+        MultiDex.install(this)
     }
 
     override fun onCreate() {

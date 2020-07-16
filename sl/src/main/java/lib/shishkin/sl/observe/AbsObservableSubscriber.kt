@@ -23,4 +23,8 @@ abstract class AbsObservableSubscriber : IObservableSubscriber {
 
     override fun onStopProvider(provider: IProvider) {
     }
+
+    override  fun stop() {
+    }
+
 }

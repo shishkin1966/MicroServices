@@ -10,7 +10,7 @@ import lib.shishkin.sl.provider.IObservableSubscriber
 import lib.shishkin.sl.provider.IRouterProvider
 import lib.shishkin.sl.provider.ObservableUnion
 
-abstract class AbsContentActivity : AbsActivity(), IRouterProvider,
+abstract class AbsContentActivity : AbsModelActivity(), IRouterProvider,
     IObservableSubscriber {
     private var snackbar: Snackbar? = null
 
