@@ -1,5 +1,8 @@
 package lib.shishkin.sl
 
+import lib.shishkin.sl.provider.ActivityUnion
+import lib.shishkin.sl.provider.ApplicationProvider
+
 /**
  * Абстрактный администратор
  */
@@ -121,4 +124,9 @@ abstract class AbsServiceLocator : IServiceLocator {
         return secretary.values()
     }
 
+    override fun stop() {
+        if (ApplicationProvider.instance.isExit()) {
+            get<ActivityUnion>(ActivityUnion.NAME)?.stop()
+        }
+    }
 }
