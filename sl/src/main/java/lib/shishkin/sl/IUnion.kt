@@ -2,12 +2,20 @@ package lib.shishkin.sl
 
 /**
  * Интерфейс объединения подписчиков
- *
- * @param <T> the type parameter
  */
 interface IUnion<T : IProviderSubscriber> : ISmallUnion<T> {
 
+    /**
+     * Установить текущего специалиста
+     *
+     * @param subscriber специалист
+     */
     fun setCurrentSubscriber(subscriber: T): Boolean
 
+    /**
+     * Получить текущего специалиста
+     *
+     * @return специалист
+     */
     fun getCurrentSubscriber(): T?
 }

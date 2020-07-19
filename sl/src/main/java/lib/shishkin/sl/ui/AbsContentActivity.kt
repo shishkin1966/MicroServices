@@ -162,5 +162,10 @@ abstract class AbsContentActivity : AbsModelActivity(), IRouterProvider,
         moveTaskToBack(true)
     }
 
+    override fun clearBackStack() {
+        BackStack.clearBackStack(this)
+    }
 
+    override fun showRootFragment() {
+    }
 }

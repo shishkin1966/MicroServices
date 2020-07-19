@@ -2,7 +2,9 @@ package lib.shishkin.microservices
 
 import android.widget.Toast
 import lib.shishkin.common.ApplicationUtils
+import lib.shishkin.microservices.db.*
 import lib.shishkin.microservices.observe.ScreenObservableSubscriber
+import lib.shishkin.microservices.provider.DbProvider
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.IProviderSubscriber
 import lib.shishkin.sl.message.IMessage
@@ -70,6 +72,14 @@ class App : ApplicationProvider() {
     var activityProvider: IActivityUnion
         get() = get(ActivityUnion.NAME)!!
         private set(value) {}
+
+    var dbProvider: IDbProvider
+        get() = get(DbProvider.NAME)!!
+        private set(value) {}
+
+    fun getDao(): Dao {
+        return dbProvider.getDb<Db>()!!.getDao()
+    }
 
     fun cancelRequests(name: String) {
         get<CommonExecutor>(CommonExecutor.NAME)!!.cancelRequests(name)

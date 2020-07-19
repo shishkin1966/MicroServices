@@ -9,7 +9,7 @@ abstract class AbsModel(private val modelView: IModelView) : IModel, ILifecycleL
     private val lifecycle = LifecycleObserver(this)
 
     init {
-        modelView.addStateObserver(this)
+        modelView.addLifecycleObserver(this)
     }
 
     override fun <M : IModelView> getView(): M {
@@ -20,8 +20,8 @@ abstract class AbsModel(private val modelView: IModelView) : IModel, ILifecycleL
         return modelView.isValid()
     }
 
-    override fun addStateObserver(stateable: ILifecycle) {
-        modelView.addStateObserver(stateable)
+    override fun addLifecycleObserver(stateable: ILifecycle) {
+        modelView.addLifecycleObserver(stateable)
     }
 
     override fun getState(): Int {

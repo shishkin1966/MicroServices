@@ -17,6 +17,6 @@ interface IModel : IValidated {
      *
      * @param stateable stateable объект
      */
-    fun addStateObserver(stateable: ILifecycle)
+    fun addLifecycleObserver(stateable: ILifecycle)
 
 }

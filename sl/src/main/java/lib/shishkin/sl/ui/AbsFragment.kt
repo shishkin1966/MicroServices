@@ -89,6 +89,14 @@ abstract class AbsFragment : Fragment(), IFragment {
         stateObservable.addLifecycleObserver(stateable)
     }
 
+    override fun removeLifecycleObserver(stateable: ILifecycle) {
+        stateObservable.removeLifecycleObserver(stateable)
+    }
+
+    override fun clearLifecycleObservers() {
+        stateObservable.clearLifecycleObservers()
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,

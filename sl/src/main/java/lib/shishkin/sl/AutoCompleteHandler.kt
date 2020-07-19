@@ -21,7 +21,7 @@ class AutoCompleteHandler<E>(name: String) {
      * Callback interface to manage message queue stopping.
      */
     interface OnShutdownListener {
-        fun onShutdown(handler: AutoCompleteHandler<*>?)
+        fun onShutdown(handler: AutoCompleteHandler<*>)
     }
 
     companion object {

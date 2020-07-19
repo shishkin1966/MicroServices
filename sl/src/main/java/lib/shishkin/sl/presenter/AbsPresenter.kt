@@ -93,4 +93,7 @@ abstract class AbsPresenter() : IPresenter {
         return true
     }
 
+    override fun stop() {
+    }
+
 }
