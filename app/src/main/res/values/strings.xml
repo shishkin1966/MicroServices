@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MicroServices</string>
+    <string name="all">Все</string>
+
+    <string name="fragment_open_account_transaction_action_button">Открыть счет</string>
+    <string name="fragment_open_account_transaction_friendly_name_subtitle">Наименование счета</string>
+    <string name="fragment_open_account_transaction_friendly_name_hint">Например: "Текущий счет"</string>
+    <string name="fragment_open_account_transaction_balance_subtitle">Баланс по счету</string>
+    <string name="fragment_open_account_transaction_balance_value_hint">Например: 100000</string>
+
 </resources>

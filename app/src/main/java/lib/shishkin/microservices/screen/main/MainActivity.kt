@@ -9,12 +9,12 @@ import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.OnBackPressedPresenter
 import lib.shishkin.microservices.R
 import lib.shishkin.microservices.ServiceLocatorSingleton
+import lib.shishkin.microservices.screen.accounts.AccountsFragment
 import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.DataAction
 import lib.shishkin.sl.action.IAction
 import lib.shishkin.sl.action.SnackBarAction
 import lib.shishkin.sl.action.handler.ActivityActionHandler
-import lib.shishkin.sl.lifecycle.ILifecycle
 import lib.shishkin.sl.provider.ErrorProvider
 import lib.shishkin.sl.provider.IErrorProvider
 import lib.shishkin.sl.ui.AbsContentActivity
@@ -135,7 +135,7 @@ class MainActivity : AbsContentActivity() {
         showFragment(AccountsFragment.newInstance(), true)
     }
 
-    fun clearIntent() {
+    private fun clearIntent() {
         intent = null
     }
 }
