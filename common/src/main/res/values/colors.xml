@@ -18,4 +18,6 @@
     <color name="text">#212121</color>
 
     <color name="blue_dark">#074a90</color>
+    <color name="divider_color">#d9d9d9</color>
+
 </resources>
