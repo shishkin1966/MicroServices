@@ -1,5 +1,7 @@
 package lib.shishkin.microservices
 
+import lib.shishkin.microservices.provider.DbProvider
+import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.sl.INamed
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.IProviderFactory
@@ -21,6 +23,7 @@ class ProviderFactory : IProviderFactory, INamed {
         return try {
             when (name) {
                 ErrorProvider.NAME -> ErrorSingleton.instance
+                CrashProvider.NAME -> CrashProvider()
                 ApplicationSingleton.instance.getName() -> ApplicationSingleton.instance
                 ActivityUnion.NAME -> ActivityUnion()
                 PresenterUnion.NAME -> PresenterUnion()
@@ -28,7 +31,9 @@ class ProviderFactory : IProviderFactory, INamed {
                 ObservableUnion.NAME -> ObservableUnion()
                 CommonExecutor.NAME -> CommonExecutor()
                 DbExecutor.NAME -> DbExecutor()
+                DbProvider.NAME -> DbProvider()
                 NetExecutor.NAME -> NetExecutor()
+                NotificationProvider.NAME -> NotificationProvider()
                 else -> Class.forName(name).newInstance() as IProvider
             }
         } catch (e: Exception) {

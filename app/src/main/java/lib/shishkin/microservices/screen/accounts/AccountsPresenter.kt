@@ -4,9 +4,13 @@ import android.graphics.drawable.Drawable
 import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
+import lib.shishkin.microservices.action.Actions
 import lib.shishkin.microservices.data.Account
 import lib.shishkin.microservices.data.Balance
 import lib.shishkin.microservices.provider.Providers
+import lib.shishkin.microservices.request.GetAccountsRequest
+import lib.shishkin.microservices.request.GetBalanceRequest
+import lib.shishkin.microservices.request.GetCurrencyRequest
 import lib.shishkin.sl.action.*
 import lib.shishkin.sl.data.ExtResult
 import lib.shishkin.sl.model.AbsModelPresenter
@@ -16,7 +20,6 @@ import lib.shishkin.sl.provider.ApplicationProvider
 import lib.shishkin.sl.provider.IRouterProvider
 import lib.shishkin.sl.provider.ObservableUnion
 import lib.shishkin.sl.request.IResponseListener
-import lib.shishkin.sl.ui.AbsContentActivity
 
 class AccountsPresenter(model: AccountsModel) : AbsModelPresenter(model), IResponseListener,
     IObjectObservableSubscriber {
@@ -159,10 +162,12 @@ class AccountsPresenter(model: AccountsModel) : AbsModelPresenter(model), IRespo
     private fun viewAccount(account: Account) {
         val activity = getView<AccountsFragment>().activity
         if (activity != null) {
+            /*
             (activity as AbsContentActivity).showFragment(
                 ViewAccountFragment.newInstance(account),
                 true
             )
+            */
         }
     }
 

@@ -11,14 +11,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import lib.shishkin.common.ApplicationUtils.Companion.findView
 import lib.shishkin.common.LinearLayoutBehavior
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
-import lib.shishkin.sl.action.ApplicationAction
-import lib.shishkin.sl.action.DataAction
-import lib.shishkin.sl.action.IAction
-import lib.shishkin.sl.action.MapAction
+import lib.shishkin.microservices.action.Actions
+import lib.shishkin.microservices.data.Balance
+import lib.shishkin.sl.action.*
 import lib.shishkin.sl.action.handler.FragmentActionHandler
 import lib.shishkin.sl.model.IModel
 import lib.shishkin.sl.ui.AbsContentFragment
@@ -86,7 +84,7 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
             when (action.getName()) {
                 AccountsPresenter.FilterDialog -> {
                     if (context != null) {
-                        val builder = BottomSheet.Builder(context!!)
+                        val builder = BottomSheet.Builder(requireContext())
                         filterDialog = builder
                             .setDividers(true)
                             .setTitleTextColorRes(R.color.blue)
@@ -107,7 +105,7 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
             when (action.getName()) {
                 AccountsPresenter.SortDialog -> {
                     if (context != null) {
-                        val builder = BottomSheet.Builder(context!!)
+                        val builder = BottomSheet.Builder(requireContext())
                         sortDialog = builder
                             .setDividers(true)
                             .setTitleTextColorRes(R.color.blue)

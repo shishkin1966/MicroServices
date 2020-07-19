@@ -1,5 +1,6 @@
 package lib.shishkin.sl
 
+import lib.shishkin.sl.provider.ApplicationProvider
 import java.util.concurrent.TimeUnit
 
 
@@ -24,4 +25,9 @@ abstract class AbsShortLiveProvider : AbsProvider(), AutoCompleteHandler.OnShutd
     fun post() {
         serviceHandler.post(true)
     }
+
+    override fun onShutdown(handler: AutoCompleteHandler<*>) {
+        ApplicationProvider.serviceLocator?.unregisterProvider(getName())
+    }
+
 }

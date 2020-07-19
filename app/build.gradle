@@ -60,5 +60,10 @@ dependencies {
     // Stream API
     implementation 'com.annimon:stream:1.2.1'
 
+    implementation 'androidx.preference:preference:1.1.1'
+    implementation "androidx.preference:preference-ktx:1.1.1"
+
+    // BottomSheetDialog
+    implementation 'org.michaelbel:bottomsheet:1.2.3'
 
 }
