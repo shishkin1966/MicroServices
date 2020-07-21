@@ -6,12 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import lib.shishkin.common.LinearLayoutBehavior
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
 import lib.shishkin.microservices.action.Actions
@@ -42,7 +39,6 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
     private lateinit var balanceView: RecyclerView
     private var sortDialog: DialogInterface? = null
     private var filterDialog: DialogInterface? = null
-
     override fun createModel(): IModel {
         return AccountsModel(this)
     }

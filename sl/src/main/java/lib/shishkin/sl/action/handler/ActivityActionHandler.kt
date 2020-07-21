@@ -17,6 +17,8 @@ import lib.shishkin.common.KeyboardRunnable
 import lib.shishkin.sl.IValidated
 import lib.shishkin.sl.R
 import lib.shishkin.sl.action.*
+import lib.shishkin.sl.ui.AbsContentActivity
+import lib.shishkin.sl.ui.AbsFragment
 
 
 class ActivityActionHandler(private val activity: AppCompatActivity) : BaseActionHandler() {
@@ -112,7 +114,10 @@ class ActivityActionHandler(private val activity: AppCompatActivity) : BaseActio
     }
 
     private fun showSnackbar(action: ShowSnackbarAction) {
-        val view: View = getRootView()
+        var view: View? = null
+        if (view == null) {
+            view = getRootView()
+        }
         val actionName = action.getAction()
         if (actionName.isNullOrEmpty()) {
             snackbar = BaseSnackbar().make(
