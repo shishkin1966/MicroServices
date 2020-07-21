@@ -42,8 +42,6 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
     private lateinit var balanceView: RecyclerView
     private var sortDialog: DialogInterface? = null
     private var filterDialog: DialogInterface? = null
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
-
 
     override fun createModel(): IModel {
         return AccountsModel(this)
@@ -51,8 +49,6 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        bottomSheetBehavior = LinearLayoutBehavior.from(this.findView(R.id.bottomSheetContainer)!!)
 
         view.findViewById<View>(R.id.create_account).setOnClickListener(this)
         view.findViewById<View>(R.id.sort_accounts).setOnClickListener(this)
@@ -156,17 +152,14 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.create_account -> {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 getModel<AccountsModel>().getPresenter<AccountsPresenter>()
                     .addAction(ApplicationAction(AccountsPresenter.OnClickCreateAccount))
             }
             R.id.sort_accounts -> {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 getModel<AccountsModel>().getPresenter<AccountsPresenter>()
                     .addAction(ApplicationAction(AccountsPresenter.OnClickSort))
             }
             R.id.select_accounts -> {
-                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 getModel<AccountsModel>().getPresenter<AccountsPresenter>()
                     .addAction(ApplicationAction(AccountsPresenter.OnClickFilter))
             }

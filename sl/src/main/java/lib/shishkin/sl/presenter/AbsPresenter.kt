@@ -78,7 +78,7 @@ abstract class AbsPresenter() : IPresenter {
     private fun doActions() {
         val deleted = ArrayList<IAction>()
         for (i in actions.indices) {
-            if (getState() != Lifecycle.VIEW_NOT_READY) {
+            if (getState() != Lifecycle.VIEW_READY) {
                 break
             }
             onAction(actions[i])

@@ -3,4 +3,8 @@
     <color name="blue2">#377ad0</color>
     <color name="gray_text">#8c8c8c</color>
     <color name="white_light">#EEF5FF</color>
+
+    <color name="item_pressed">#2e303b</color>
+    <color name="item_pressed_light">#6e707b</color>
+
 </resources>
