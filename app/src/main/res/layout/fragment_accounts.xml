@@ -81,7 +81,7 @@
         android:gravity="center"
         android:orientation="vertical"
         app:behavior_peekHeight="@dimen/menu_peek_height"
-        app:layout_behavior="lib.shishkin.common.LinearLayoutBehavior">
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

@@ -60,14 +60,13 @@ class BaseSnackbar {
                 snackbar.setActionTextColor(ApplicationUtils.getColor(view.context, R.color.gray))
                 backgroundColor = R.color.orange
             }
-
             else -> {
                 snackbar.setActionTextColor(ApplicationUtils.getColor(view.context, R.color.green))
-                backgroundColor = R.color.blue_dark
+                backgroundColor = R.color.gray_dark
             }
         }
         snackbarView.setBackgroundColor(ApplicationUtils.getColor(view.context, backgroundColor))
-        textView.setSingleLine(false)
+        textView.isSingleLine = false
         textView.gravity = Gravity.CENTER_HORIZONTAL
         return snackbar
     }
