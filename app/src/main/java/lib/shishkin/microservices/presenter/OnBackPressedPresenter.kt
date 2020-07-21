@@ -3,6 +3,7 @@ package lib.shishkin.microservices
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import lib.shishkin.microservices.provider.Providers
+import lib.shishkin.microservices.screen.accounts.AccountsFragment
 import lib.shishkin.sl.action.ShowSnackbarAction
 import lib.shishkin.sl.presenter.AbsPresenter
 import lib.shishkin.sl.provider.ApplicationProvider
@@ -54,7 +55,7 @@ class OnBackPressedPresenter : AbsPresenter() {
             override fun run() {
                 doubleBackPressedOnce = false
             }
-        }, 2000)
+        }, 4000)
     }
 
     private fun stopTimer() {

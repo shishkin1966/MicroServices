@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import shishkin.sl.kotlin.R
-import shishkin.sl.kotlin.app.data.Balance
-import shishkin.sl.kotlin.common.double2String
-import shishkin.sl.kotlin.common.recyclerview.AbsRecyclerViewAdapter
-import shishkin.sl.kotlin.common.trimZero
-import shishkin.sl.kotlin.sl.provider.ApplicationProvider
+import lib.shishkin.common.double2String
+import lib.shishkin.common.recyclerview.AbsRecyclerViewAdapter
+import lib.shishkin.common.trimZero
+import lib.shishkin.microservices.R
+import lib.shishkin.microservices.data.Balance
+import lib.shishkin.sl.provider.ApplicationProvider
 
 
 class BalanceRecyclerViewAdapter :

@@ -30,6 +30,7 @@ class MainActivity : AbsContentActivity() {
 
         if (action is SnackBarAction) {
             onBackPressedPresenter.onClick()
+            return true
         }
 
         if (action is ApplicationAction) {
