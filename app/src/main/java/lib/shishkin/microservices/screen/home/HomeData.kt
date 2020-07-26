@@ -1,16 +1,11 @@
-package lib.shishkin.microservices.screen.accounts
+package lib.shishkin.microservices.screen.home
 
 import lib.shishkin.microservices.data.Account
 import lib.shishkin.microservices.data.Balance
 
 
-class AccountsData {
+class HomeData {
     var accounts: List<Account> = ArrayList()
     var currencies: List<String> = ArrayList()
     var balance: List<Balance> = ArrayList()
-
-    fun getData(): List<Account> {
-        return accounts
-    }
-
 }

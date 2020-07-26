@@ -3,7 +3,7 @@ package lib.shishkin.microservices
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import lib.shishkin.microservices.provider.Providers
-import lib.shishkin.microservices.screen.accounts.AccountsFragment
+import lib.shishkin.microservices.screen.home.HomeFragment
 import lib.shishkin.sl.action.ShowSnackbarAction
 import lib.shishkin.sl.presenter.AbsPresenter
 import lib.shishkin.sl.provider.ApplicationProvider
@@ -25,7 +25,7 @@ class OnBackPressedPresenter : AbsPresenter() {
     fun onClick(): Boolean {
         val fragment =
             ApplicationSingleton.instance.activityProvider.getCurrentFragment<Fragment>()
-        if (fragment !is AccountsFragment) {
+        if (fragment !is HomeFragment) {
             return false
         }
         if (isValid()) {

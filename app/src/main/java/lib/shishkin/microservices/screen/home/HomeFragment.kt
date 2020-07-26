@@ -1,4 +1,4 @@
-package lib.shishkin.microservices.screen.accounts
+package lib.shishkin.microservices.screen.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,13 +18,13 @@ import lib.shishkin.sl.model.IModel
 import lib.shishkin.sl.ui.AbsContentFragment
 
 
-class AccountsFragment : AbsContentFragment() {
+class HomeFragment : AbsContentFragment() {
 
     companion object {
-        const val NAME = "AccountsFragment"
+        const val NAME = "HomeFragment"
 
-        fun newInstance(): AccountsFragment {
-            return AccountsFragment()
+        fun newInstance(): HomeFragment {
+            return HomeFragment()
         }
     }
 
@@ -34,18 +34,28 @@ class AccountsFragment : AbsContentFragment() {
     private val balanceAdapter: BalanceRecyclerViewAdapter = BalanceRecyclerViewAdapter()
     private lateinit var accountsView: RecyclerView
     private lateinit var balanceView: RecyclerView
+    private lateinit var depositsView: RecyclerView
+    private lateinit var cardsView: RecyclerView
 
     override fun createModel(): IModel {
-        return AccountsModel(this)
+        return HomeModel(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        accountsView = view.findViewById(R.id.list)
+        accountsView = view.findViewById(R.id.accounts_list)
         accountsView.layoutManager = LinearLayoutManager(activity)
         accountsView.itemAnimator = DefaultItemAnimator()
         accountsView.adapter = accountsAdapter
+
+        depositsView = view.findViewById(R.id.deposits_list)
+        depositsView.layoutManager = LinearLayoutManager(activity)
+        depositsView.itemAnimator = DefaultItemAnimator()
+
+        cardsView = view.findViewById(R.id.cards_list)
+        cardsView.layoutManager = LinearLayoutManager(activity)
+        cardsView.itemAnimator = DefaultItemAnimator()
 
         balanceView = view.findViewById(R.id.balance_list)
         balanceView.layoutManager = LinearLayoutManager(activity)
@@ -60,7 +70,7 @@ class AccountsFragment : AbsContentFragment() {
         if (action is DataAction<*>) {
             when (action.getName()) {
                 Actions.RefreshViews -> {
-                    refreshViews(action.getData() as AccountsData?)
+                    refreshViews(action.getData() as HomeData?)
                     return true
                 }
             }
@@ -79,7 +89,7 @@ class AccountsFragment : AbsContentFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_accounts, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onDestroyView() {
@@ -93,10 +103,10 @@ class AccountsFragment : AbsContentFragment() {
         return true
     }
 
-    private fun refreshViews(viewData: AccountsData?) {
+    private fun refreshViews(viewData: HomeData?) {
         if (viewData == null) return
 
-        accountsAdapter.setItems(viewData.getData())
+        accountsAdapter.setItems(viewData.accounts)
         showAccountsBalance(viewData.balance)
     }
 

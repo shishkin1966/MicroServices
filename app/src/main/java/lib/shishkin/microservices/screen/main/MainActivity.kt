@@ -9,7 +9,7 @@ import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.OnBackPressedPresenter
 import lib.shishkin.microservices.R
 import lib.shishkin.microservices.ServiceLocatorSingleton
-import lib.shishkin.microservices.screen.accounts.AccountsFragment
+import lib.shishkin.microservices.screen.home.HomeFragment
 import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.DataAction
 import lib.shishkin.sl.action.IAction
@@ -133,7 +133,7 @@ class MainActivity : AbsContentActivity() {
 
     override fun showRootFragment() {
         clearBackStack()
-        showFragment(AccountsFragment.newInstance(), true)
+        showFragment(HomeFragment.newInstance(), true)
     }
 
     private fun clearIntent() {

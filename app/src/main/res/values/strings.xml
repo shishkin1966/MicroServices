@@ -7,4 +7,7 @@
     <string name="history">История</string>
     <string name="more">Еще</string>
 
+    <string name="deposits">Вклады</string>
+    <string name="accounts">Счета</string>
+    <string name="cards">Карты</string>
 </resources>
