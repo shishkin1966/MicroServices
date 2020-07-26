@@ -1,4 +1,4 @@
-package lib.shishkin.microservices.screen.accounts
+package lib.shishkin.microservices.screen.home
 
 import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.microservices.ApplicationSingleton
@@ -17,15 +17,15 @@ import lib.shishkin.sl.observe.ObjectObservable
 import lib.shishkin.sl.provider.ObservableUnion
 import lib.shishkin.sl.request.IResponseListener
 
-class AccountsPresenter(model: AccountsModel) : AbsModelPresenter(model), IResponseListener,
+class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListener,
     IObjectObservableSubscriber {
 
     companion object {
-        const val NAME = "AccountsPresenter"
+        const val NAME = "HomePresenter"
         const val OnClickAccount = "OnClickAccount"
     }
 
-    private lateinit var data: AccountsData
+    private lateinit var data: HomeData
 
     override fun isRegister(): Boolean {
         return true
@@ -37,38 +37,38 @@ class AccountsPresenter(model: AccountsModel) : AbsModelPresenter(model), IRespo
 
     override fun onStart() {
         if (!::data.isInitialized) {
-            data = AccountsData()
+            data = HomeData()
             getData()
         } else {
-            getView<AccountsFragment>().addAction(DataAction(Actions.RefreshViews, data))
+            getView<HomeFragment>().addAction(DataAction(Actions.RefreshViews, data))
         }
     }
 
     private fun getData() {
-        getView<AccountsFragment>().addAction(ShowProgressBarAction())
+        getView<HomeFragment>().addAction(ShowProgressBarAction())
         Providers.getAccounts(getName())
         Providers.getBalance(getName())
         Providers.getCurrency(getName())
     }
 
     override fun response(result: ExtResult) {
-        getView<AccountsFragment>().addAction(HideProgressBarAction())
+        getView<HomeFragment>().addAction(HideProgressBarAction())
         if (!result.hasError()) {
             when (result.getName()) {
                 GetAccountsRequest.NAME -> {
                     data.accounts = result.getData() as List<Account>
-                    getView<AccountsFragment>().addAction(DataAction(Actions.RefreshViews, data))
+                    getView<HomeFragment>().addAction(DataAction(Actions.RefreshViews, data))
                 }
                 GetBalanceRequest.NAME -> {
                     data.balance = result.getData() as List<Balance>
-                    getView<AccountsFragment>().addAction(DataAction(Actions.RefreshViews, data))
+                    getView<HomeFragment>().addAction(DataAction(Actions.RefreshViews, data))
                 }
                 GetCurrencyRequest.NAME -> {
                     data.currencies = result.getData() as List<String>
                 }
             }
         } else {
-            getView<AccountsFragment>().addAction(
+            getView<HomeFragment>().addAction(
                 ShowMessageAction(result.getErrorText()!!).setType(
                     ApplicationUtils.MESSAGE_TYPE_ERROR
                 )

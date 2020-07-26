@@ -1,4 +1,4 @@
-package lib.shishkin.microservices.screen.accounts
+package lib.shishkin.microservices.screen.home
 
 import android.util.TypedValue
 import android.view.LayoutInflater

@@ -55,5 +55,10 @@
         <item name="android:textColor">@color/menu_text_selector</item>
     </style>
 
+    <style name="HeaderItemStyle">
+        <item name="android:layout_height">@dimen/dimen_48dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/gray_light</item>
+    </style>
 
 </resources>

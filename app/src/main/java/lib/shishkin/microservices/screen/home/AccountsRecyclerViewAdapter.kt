@@ -1,4 +1,4 @@
-package lib.shishkin.microservices.screen.accounts
+package lib.shishkin.microservices.screen.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -52,8 +52,8 @@ class AccountsRecyclerViewAdapter :
             balanceView?.text = "${item.balance?.double2String()?.trimZero()} ${item.currency}"
             layout?.setOnClickListener {
                 val presenter =
-                    ApplicationSingleton.instance.getPresenter<AccountsPresenter>(AccountsPresenter.NAME)
-                presenter?.addAction(DataAction(AccountsPresenter.OnClickAccount, item))
+                    ApplicationSingleton.instance.getPresenter<HomePresenter>(HomePresenter.NAME)
+                presenter?.addAction(DataAction(HomePresenter.OnClickAccount, item))
             }
         }
 
