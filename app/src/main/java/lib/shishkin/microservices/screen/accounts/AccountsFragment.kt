@@ -1,7 +1,5 @@
 package lib.shishkin.microservices.screen.accounts
 
-import android.content.DialogInterface
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,15 +11,14 @@ import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
 import lib.shishkin.microservices.action.Actions
 import lib.shishkin.microservices.data.Balance
-import lib.shishkin.sl.action.*
+import lib.shishkin.sl.action.DataAction
+import lib.shishkin.sl.action.IAction
 import lib.shishkin.sl.action.handler.FragmentActionHandler
 import lib.shishkin.sl.model.IModel
 import lib.shishkin.sl.ui.AbsContentFragment
-import org.michaelbel.bottomsheet.BottomSheet
 
 
-class AccountsFragment : AbsContentFragment(), View.OnClickListener,
-    DialogInterface.OnClickListener {
+class AccountsFragment : AbsContentFragment() {
 
     companion object {
         const val NAME = "AccountsFragment"
@@ -37,18 +34,13 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
     private val balanceAdapter: BalanceRecyclerViewAdapter = BalanceRecyclerViewAdapter()
     private lateinit var accountsView: RecyclerView
     private lateinit var balanceView: RecyclerView
-    private var sortDialog: DialogInterface? = null
-    private var filterDialog: DialogInterface? = null
+
     override fun createModel(): IModel {
         return AccountsModel(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<View>(R.id.create_account).setOnClickListener(this)
-        view.findViewById<View>(R.id.sort_accounts).setOnClickListener(this)
-        view.findViewById<View>(R.id.select_accounts).setOnClickListener(this)
 
         accountsView = view.findViewById(R.id.list)
         accountsView.layoutManager = LinearLayoutManager(activity)
@@ -63,6 +55,8 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
     override fun onAction(action: IAction): Boolean {
         if (!isValid()) return false
 
+        if (actionHandler.onAction(action)) return true
+
         if (action is DataAction<*>) {
             when (action.getName()) {
                 Actions.RefreshViews -> {
@@ -71,46 +65,6 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
                 }
             }
         }
-
-        if (action is MapAction) {
-            when (action.getName()) {
-                AccountsPresenter.FilterDialog -> {
-                    if (context != null) {
-                        val builder = BottomSheet.Builder(requireContext())
-                        filterDialog = builder
-                            .setDividers(true)
-                            .setTitleTextColorRes(R.color.blue)
-                            .setTitle(R.string.select)
-                            .setItems(
-                                action.map["Items"] as Array<out CharSequence>,
-                                action.map["Icons"] as Array<out Drawable>,
-                                this
-                            )
-                            .show()
-                    }
-                    return true
-                }
-            }
-        }
-
-        if (action is ApplicationAction) {
-            when (action.getName()) {
-                AccountsPresenter.SortDialog -> {
-                    if (context != null) {
-                        val builder = BottomSheet.Builder(requireContext())
-                        sortDialog = builder
-                            .setDividers(true)
-                            .setTitleTextColorRes(R.color.blue)
-                            .setTitle(R.string.sort)
-                            .setMenu(R.menu.sort_menu, this)
-                            .show()
-                    }
-                    return true
-                }
-            }
-        }
-
-        if (actionHandler.onAction(action)) return true
 
         ApplicationSingleton.instance.onError(
             getName(),
@@ -128,16 +82,6 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
         return inflater.inflate(R.layout.fragment_accounts, container, false)
     }
 
-    private fun refreshViews(viewData: AccountsData?) {
-        if (viewData == null) return
-
-        accountsAdapter.setItems(viewData.getData())
-        findView<View>(R.id.sort_accounts)?.isEnabled = viewData.isSortMenuEnabled()
-        findView<View>(R.id.select_accounts)?.isEnabled = viewData.isFilterMenuEnabled()
-
-        showAccountsBalance(viewData.balance)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
 
@@ -145,38 +89,15 @@ class AccountsFragment : AbsContentFragment(), View.OnClickListener,
         balanceView.adapter = null
     }
 
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.create_account -> {
-                getModel<AccountsModel>().getPresenter<AccountsPresenter>()
-                    .addAction(ApplicationAction(AccountsPresenter.OnClickCreateAccount))
-            }
-            R.id.sort_accounts -> {
-                getModel<AccountsModel>().getPresenter<AccountsPresenter>()
-                    .addAction(ApplicationAction(AccountsPresenter.OnClickSort))
-            }
-            R.id.select_accounts -> {
-                getModel<AccountsModel>().getPresenter<AccountsPresenter>()
-                    .addAction(ApplicationAction(AccountsPresenter.OnClickFilter))
-            }
-        }
-    }
-
-    override fun onClick(dialog: DialogInterface?, which: Int) {
-        when (dialog) {
-            sortDialog -> {
-                getModel<AccountsModel>().getPresenter<AccountsPresenter>()
-                    .addAction(DialogClickAction(AccountsPresenter.SortDialog, which))
-            }
-            filterDialog -> {
-                getModel<AccountsModel>().getPresenter<AccountsPresenter>()
-                    .addAction(DialogClickAction(AccountsPresenter.FilterDialog, which))
-            }
-        }
-    }
-
     override fun isTop(): Boolean {
         return true
+    }
+
+    private fun refreshViews(viewData: AccountsData?) {
+        if (viewData == null) return
+
+        accountsAdapter.setItems(viewData.getData())
+        showAccountsBalance(viewData.balance)
     }
 
     private fun showAccountsBalance(list: List<Balance>?) {

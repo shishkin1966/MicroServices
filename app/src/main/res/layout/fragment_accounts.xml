@@ -12,7 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="44dp">
+        android:background="#FFFFFF">
 
         <LinearLayout
             android:id="@+id/balanceLL"
@@ -49,8 +49,9 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_above="@id/bottomMenu"
             android:layout_below="@+id/balanceLL"
-            android:background="@color/white"
+            android:background="@color/background"
             android:scrollbars="vertical" />
 
         <View
@@ -72,85 +73,68 @@
             app:mpb_progressStyle="horizontal"
             app:mpb_showProgressBackground="false" />
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/bottomSheetContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:behavior_peekHeight="@dimen/menu_peek_height"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
+            android:id="@+id/bottomMenu"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:focusable="false"
-            android:focusableInTouchMode="false">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="@dimen/dimen_56dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/create_account"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/menu_height"
-                    android:background="@drawable/corner_selector"
-                    android:gravity="center_vertical"
-                    android:paddingStart="@dimen/dimen_12dp"
-                    android:paddingEnd="@dimen/dimen_8dp"
-                    android:text="@string/fragment_open_account_transaction_action_button"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/text_size_large" />
-
-                <View style="@style/HorizontalGradientDivider" />
-
-                <TextView
-                    android:id="@+id/sort_accounts"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/menu_height"
-                    android:background="@drawable/panel_selector"
-                    android:gravity="center_vertical"
-                    android:paddingStart="@dimen/dimen_12dp"
-                    android:paddingEnd="@dimen/dimen_8dp"
-                    android:text="Сортировать по ..."
-                    android:textColor="@color/white_text_selector"
-                    android:textSize="@dimen/text_size_large" />
-
-                <View style="@style/HorizontalGradientDivider" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/select_accounts"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/menu_height"
-                        android:layout_weight="1"
-                        android:background="@drawable/panel_selector"
-                        android:gravity="center_vertical"
-                        android:paddingStart="@dimen/dimen_12dp"
-                        android:paddingEnd="@dimen/dimen_8dp"
-                        android:text="Выбрать ..."
-                        android:textColor="@color/white_text_selector"
-                        android:textSize="@dimen/text_size_large" />
-
-                </LinearLayout>
-
+                    android:id="@+id/exchange_cryptorates"
+                    style="@style/SideMenuBottomButtonStyle"
+                    android:drawableTop="@drawable/ic_home"
+                    android:gravity="center"
+                    android:text="@string/my_bank" />
 
                 <View
-                    style="@style/HorizontalThinDivider"
-                    android:background="@color/white_light" />
+                    android:background="@drawable/below_shadow"
+                    style="@style/VerticalDivider" />
 
+                <TextView
+                    android:id="@+id/exchange_rates"
+                    style="@style/SideMenuBottomButtonStyle"
+                    android:drawableTop="@drawable/ic_money"
+                    android:text="@string/payment" />
+
+                <View
+                    android:background="@drawable/below_shadow"
+                    style="@style/VerticalDivider" />
+
+                <TextView
+                    android:id="@+id/address"
+                    style="@style/SideMenuBottomButtonStyle"
+                    android:drawableTop="@drawable/ic_history"
+                    android:text="@string/history" />
+
+                <View
+                    android:background="@drawable/below_shadow"
+                    style="@style/VerticalDivider" />
+
+                <TextView
+                    android:id="@+id/contact"
+                    style="@style/SideMenuBottomButtonStyle"
+                    android:drawableTop="@drawable/ic_more"
+                    android:text="@string/more" />
             </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_above="@id/bottomMenu"
+            android:background="@drawable/above_shadow" />
+    </RelativeLayout>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

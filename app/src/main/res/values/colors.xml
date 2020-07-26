@@ -6,5 +6,6 @@
 
     <color name="item_pressed">#2e303b</color>
     <color name="item_pressed_light">#6e707b</color>
+    <color name="item_text">#eaeaea</color>
 
 </resources>
