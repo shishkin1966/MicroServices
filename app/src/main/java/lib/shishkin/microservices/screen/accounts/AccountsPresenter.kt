@@ -1,9 +1,7 @@
 package lib.shishkin.microservices.screen.accounts
 
-import android.graphics.drawable.Drawable
 import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.microservices.ApplicationSingleton
-import lib.shishkin.microservices.R
 import lib.shishkin.microservices.action.Actions
 import lib.shishkin.microservices.data.Account
 import lib.shishkin.microservices.data.Balance
@@ -16,8 +14,6 @@ import lib.shishkin.sl.data.ExtResult
 import lib.shishkin.sl.model.AbsModelPresenter
 import lib.shishkin.sl.observe.IObjectObservableSubscriber
 import lib.shishkin.sl.observe.ObjectObservable
-import lib.shishkin.sl.provider.ApplicationProvider
-import lib.shishkin.sl.provider.IRouterProvider
 import lib.shishkin.sl.provider.ObservableUnion
 import lib.shishkin.sl.request.IResponseListener
 
@@ -26,16 +22,10 @@ class AccountsPresenter(model: AccountsModel) : AbsModelPresenter(model), IRespo
 
     companion object {
         const val NAME = "AccountsPresenter"
-        const val OnClickCreateAccount = "OnClickCreateAccount"
         const val OnClickAccount = "OnClickAccount"
-        const val OnClickSort = "OnClickSort"
-        const val OnClickFilter = "OnClickFilter"
-        const val SortDialog = "SortDialog"
-        const val FilterDialog = "FilterDialog"
     }
 
     private lateinit var data: AccountsData
-    private val ALL = ApplicationProvider.appContext.getString(R.string.all)
 
     override fun isRegister(): Boolean {
         return true
@@ -89,50 +79,12 @@ class AccountsPresenter(model: AccountsModel) : AbsModelPresenter(model), IRespo
     override fun onAction(action: IAction): Boolean {
         if (!isValid()) return false
 
-        if (action is DialogClickAction) {
-            onClickDialog(action.name, action.which)
-            return true
-        }
-
-        if (action is DataAction<*>) {
-            when (action.getName()) {
-                OnClickAccount -> {
-                    viewAccount(action.getData() as Account)
-                    return true
-                }
-            }
-        }
-
-        if (action is ApplicationAction) {
-            when (action.getName()) {
-                OnClickCreateAccount -> {
-                    createAccount()
-                    return true
-                }
-                OnClickSort -> {
-                    onClickSort()
-                    return true
-                }
-                OnClickFilter -> {
-                    onClickFilter()
-                    return true
-                }
-            }
-        }
-
         ApplicationSingleton.instance.onError(
             getName(),
             "Unknown action:$action",
             true
         )
         return false
-    }
-
-    private fun createAccount() {
-        val activity = getView<AccountsFragment>().activity
-        if (activity != null && activity is IRouterProvider && activity.isValid()) {
-//            activity.showFragment(CreateAccountFragment.newInstance())
-        }
     }
 
     override fun getListenObjects(): List<String> {
@@ -159,50 +111,4 @@ class AccountsPresenter(model: AccountsModel) : AbsModelPresenter(model), IRespo
         return list
     }
 
-    private fun viewAccount(account: Account) {
-        val activity = getView<AccountsFragment>().activity
-        if (activity != null) {
-            /*
-            (activity as AbsContentActivity).showFragment(
-                ViewAccountFragment.newInstance(account),
-                true
-            )
-            */
-        }
-    }
-
-    private fun onClickDialog(dialog: String, which: Int) {
-        when (dialog) {
-            SortDialog -> {
-                data.sort = which
-            }
-            FilterDialog -> {
-                if (which == 0) {
-                    data.filter = null
-                } else {
-                    data.filter = data.currencies[which - 1]
-                }
-            }
-        }
-        getView<AccountsFragment>().addAction(DataAction(Actions.RefreshViews, data))
-    }
-
-    private fun onClickSort() {
-        getView<AccountsFragment>().addAction(ApplicationAction(SortDialog))
-    }
-
-    private fun onClickFilter() {
-        if (data.currencies.size > 1) {
-            val items = arrayOfNulls<CharSequence>(data.currencies.size + 1)
-            val icons = arrayOfNulls<Drawable>(data.currencies.size + 1)
-            items[0] = ALL
-            for (i in 0 until data.currencies.size) {
-                items[i + 1] = data.currencies[i]
-            }
-            val map = HashMap<String, Any>()
-            map["Items"] = items
-            map["Icons"] = icons
-            getView<AccountsFragment>().addAction(MapAction(FilterDialog, map))
-        }
-    }
 }
