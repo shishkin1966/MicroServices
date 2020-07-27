@@ -8,4 +8,8 @@
     <color name="item_pressed_light">#6e707b</color>
     <color name="item_text">#eaeaea</color>
 
+    <color name="orange_button_background">#ff5514</color>
+    <color name="orange_button_background_pressed">#cc3f10</color>
+    <color name="orange_button_background_disabled">#dbd8d8</color>
+
 </resources>

@@ -70,4 +70,8 @@ dependencies {
     // BottomSheetDialog
     implementation 'org.michaelbel:bottomsheet:1.2.3'
 
+    // Spinner
+    implementation 'com.jaredrummler:material-spinner:1.3.1'
+
+
 }

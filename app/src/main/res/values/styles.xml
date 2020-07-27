@@ -61,4 +61,35 @@
         <item name="android:background">@color/gray_light</item>
     </style>
 
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
+        <item name="android:typeface">sans</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:textColorHint">@color/hint</item>
+    </style>
+
+    <style name="ButtonStyle" parent="HelveticaTextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">false</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:clickable">true</item>
+        <item name="android:minHeight">@dimen/button_min_height</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="FlatOrangeButtonStyle" parent="ButtonStyle">
+        <item name="android:textColor">@color/white_text_selector</item>
+        <item name="android:background">@drawable/orange_text_button_background</item>
+    </style>
+
+
 </resources>
