@@ -66,6 +66,8 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/CreateDeposit"
+
                         android:layout_width="@dimen/dimen_40dp"
                         android:layout_height="@dimen/dimen_40dp"
                         android:layout_gravity="center_vertical"
@@ -84,11 +86,14 @@
 
                 </LinearLayout>
 
+                <View style="@style/HorizontalDivider" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/deposits_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white" />
 
                 <View style="@style/HorizontalDivider" />
 
@@ -107,6 +112,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/CreateAccount"
                         android:layout_width="@dimen/dimen_40dp"
                         android:layout_height="@dimen/dimen_40dp"
                         android:layout_gravity="center_vertical"
@@ -125,11 +131,14 @@
 
                 </LinearLayout>
 
+                <View style="@style/HorizontalDivider" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/accounts_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/white" />
 
                 <View style="@style/HorizontalDivider" />
 
@@ -148,6 +157,7 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/CreateCard"
                         android:layout_width="@dimen/dimen_40dp"
                         android:layout_height="@dimen/dimen_40dp"
                         android:layout_gravity="center_vertical"
@@ -166,8 +176,11 @@
 
                 </LinearLayout>
 
+                <View style="@style/HorizontalDivider" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/cards_list"
+                    android:background="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical" />

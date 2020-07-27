@@ -5,15 +5,19 @@ import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.action.Actions
 import lib.shishkin.microservices.data.Account
 import lib.shishkin.microservices.data.Balance
+import lib.shishkin.microservices.data.Card
+import lib.shishkin.microservices.data.Deposit
 import lib.shishkin.microservices.provider.Providers
 import lib.shishkin.microservices.request.GetAccountsRequest
 import lib.shishkin.microservices.request.GetBalanceRequest
 import lib.shishkin.microservices.request.GetCurrencyRequest
+import lib.shishkin.microservices.screen.create_account.CreateAccountFragment
 import lib.shishkin.sl.action.*
 import lib.shishkin.sl.data.ExtResult
 import lib.shishkin.sl.model.AbsModelPresenter
 import lib.shishkin.sl.observe.IObjectObservableSubscriber
 import lib.shishkin.sl.observe.ObjectObservable
+import lib.shishkin.sl.provider.IRouterProvider
 import lib.shishkin.sl.provider.ObservableUnion
 import lib.shishkin.sl.request.IResponseListener
 
@@ -23,6 +27,9 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
     companion object {
         const val NAME = "HomePresenter"
         const val OnClickAccount = "OnClickAccount"
+        const val OnClickCreateAccount = "OnClickCreateAccount"
+        const val OnClickCreateDeposit = "OnClickCreateDeposit"
+        const val OnClickCreateCard = "OnClickCreateCard"
     }
 
     private lateinit var data: HomeData
@@ -79,6 +86,23 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
     override fun onAction(action: IAction): Boolean {
         if (!isValid()) return false
 
+        if (action is ApplicationAction) {
+            when (action.getName()) {
+                OnClickCreateAccount -> {
+                    createAccount()
+                    return true
+                }
+                OnClickCreateDeposit -> {
+                    createDeposit()
+                    return true
+                }
+                OnClickCreateCard -> {
+                    createCard()
+                    return true
+                }
+            }
+        }
+
         ApplicationSingleton.instance.onError(
             getName(),
             "Unknown action:$action",
@@ -88,7 +112,7 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
     }
 
     override fun getListenObjects(): List<String> {
-        return listOf(Account.TABLE)
+        return listOf(Account.TABLE, Deposit.TABLE, Card.TABLE)
     }
 
     override fun getObservable(): List<String> {
@@ -111,4 +135,23 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
         return list
     }
 
+    private fun createAccount() {
+        val activity = getView<HomeFragment>().activity
+        if (activity is IRouterProvider && activity.isValid()) {
+            activity.showFragment(CreateAccountFragment.newInstance())
+        }
+    }
+
+    private fun createDeposit() {
+        val activity = getView<HomeFragment>().activity
+        if (activity is IRouterProvider && activity.isValid()) {
+           // activity.showFragment(CreateAccountFragment.newInstance())
+        }
+    }
+    private fun createCard() {
+        val activity = getView<HomeFragment>().activity
+        if (activity is IRouterProvider && activity.isValid()) {
+            // activity.showFragment(CreateAccountFragment.newInstance())
+        }
+    }
 }

@@ -82,7 +82,7 @@ fun String?.getNumbers(): String? {
     } else this!!.replace("[^\\.0123456789\\+]".toRegex(), "")
 }
 
-fun String?.toLong(): Long {
+fun String?.toLongValue(): Long {
     var l: Long = 0
     if (!this.isNullOrEmpty()) {
         try {
@@ -95,7 +95,7 @@ fun String?.toLong(): Long {
     return l
 }
 
-fun String?.toInt(): Int {
+fun String?.toIntValue(): Int {
     var i = 0
     if (!this.isNullOrEmpty()) {
         try {
@@ -108,7 +108,7 @@ fun String?.toInt(): Int {
     return i
 }
 
-fun String?.toDouble(): Double {
+fun String?.toDoubleValue(): Double {
     var s: String? = this
     var d = 0.0
     if (!s.isNullOrEmpty()) {
@@ -122,7 +122,7 @@ fun String?.toDouble(): Double {
     return d
 }
 
-fun String?.toFloat(): Float {
+fun String?.toFloatValue(): Float {
     var s: String? = this
     var f = 0f
     if (!s.isNullOrEmpty()) {

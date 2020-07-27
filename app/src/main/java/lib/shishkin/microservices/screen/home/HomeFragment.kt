@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
 import lib.shishkin.microservices.action.Actions
 import lib.shishkin.microservices.data.Balance
+import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.DataAction
 import lib.shishkin.sl.action.IAction
 import lib.shishkin.sl.action.handler.FragmentActionHandler
@@ -43,6 +45,10 @@ class HomeFragment : AbsContentFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<TextView>(R.id.CreateDeposit).setOnClickListener(this::onClick)
+        view.findViewById<TextView>(R.id.CreateAccount).setOnClickListener(this::onClick)
+        view.findViewById<TextView>(R.id.CreateCard).setOnClickListener(this::onClick)
 
         accountsView = view.findViewById(R.id.accounts_list)
         accountsView.layoutManager = LinearLayoutManager(activity)
@@ -106,8 +112,10 @@ class HomeFragment : AbsContentFragment() {
     private fun refreshViews(viewData: HomeData?) {
         if (viewData == null) return
 
-        accountsAdapter.setItems(viewData.accounts)
-        showAccountsBalance(viewData.balance)
+        if (viewData.accounts != null) {
+            accountsAdapter.setItems(viewData.accounts!!)
+            showAccountsBalance(viewData.balance)
+        }
     }
 
     private fun showAccountsBalance(list: List<Balance>?) {
@@ -118,6 +126,23 @@ class HomeFragment : AbsContentFragment() {
 
     override fun getName(): String {
         return NAME
+    }
+
+    private fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.CreateDeposit -> {
+                getModel<HomeModel>().getPresenter<HomePresenter>()
+                    .addAction(ApplicationAction(HomePresenter.OnClickCreateDeposit))
+            }
+            R.id.CreateAccount -> {
+                getModel<HomeModel>().getPresenter<HomePresenter>()
+                    .addAction(ApplicationAction(HomePresenter.OnClickCreateAccount))
+            }
+            R.id.CreateCard -> {
+                getModel<HomeModel>().getPresenter<HomePresenter>()
+                    .addAction(ApplicationAction(HomePresenter.OnClickCreateCard))
+            }
+        }
     }
 
 }
