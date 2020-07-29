@@ -116,7 +116,6 @@
         android:id="@+id/openAccountButton"
         style="@style/FlatOrangeButtonStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:enabled="false"
         android:text="@string/fragment_open_account_transaction_action_button" />
