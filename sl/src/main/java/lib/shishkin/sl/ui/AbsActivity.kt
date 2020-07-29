@@ -132,18 +132,16 @@ abstract class AbsActivity : AppCompatActivity(), IActivity {
     }
 
     override fun addAction(action: IAction) {
-        ApplicationUtils.runOnUiThread(Runnable {
-            when (getState()) {
-                Lifecycle.VIEW_READY -> {
-                    actions.add(action)
-                    doActions()
-                }
-
-                Lifecycle.VIEW_CREATE, Lifecycle.VIEW_NOT_READY -> {
-                    actions.add(action)
-                }
+        when (getState()) {
+            Lifecycle.VIEW_READY -> {
+                actions.add(action)
+                doActions()
             }
-        })
+
+            Lifecycle.VIEW_CREATE, Lifecycle.VIEW_NOT_READY -> {
+                actions.add(action)
+            }
+        }
     }
 
     private fun doActions() {

@@ -30,11 +30,17 @@ class LifecycleObserver(listener: ILifecycleListener?) : ILifecycle {
     override fun setState(state: Int) {
         this.state = state
         when (state) {
-            Lifecycle.VIEW_CREATE -> listener!!.get()!!.onCreateView()
+            Lifecycle.VIEW_CREATE -> {
+                listener!!.get()!!.onCreateView()
+            }
 
-            Lifecycle.VIEW_READY -> listener!!.get()!!.onReadyView()
+            Lifecycle.VIEW_READY -> {
+                listener!!.get()!!.onReadyView()
+            }
 
-            Lifecycle.VIEW_DESTROY -> listener!!.get()!!.onDestroyView()
+            Lifecycle.VIEW_DESTROY -> {
+                listener!!.get()!!.onDestroyView()
+            }
         }
     }
 }
