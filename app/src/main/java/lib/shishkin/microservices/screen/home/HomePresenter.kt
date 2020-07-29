@@ -30,6 +30,8 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
         const val OnClickCreateAccount = "OnClickCreateAccount"
         const val OnClickCreateDeposit = "OnClickCreateDeposit"
         const val OnClickCreateCard = "OnClickCreateCard"
+        const val RefreshAccounts = "RefreshAccounts"
+        const val RefreshBalance = "RefreshBalance"
     }
 
     private lateinit var data: HomeData
@@ -46,45 +48,55 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
         if (!::data.isInitialized) {
             data = HomeData()
             getData()
-        } else {
-            getView<HomeFragment>().addAction(DataAction(Actions.RefreshViews, data))
         }
     }
 
     private fun getData() {
-        getView<HomeFragment>().addAction(ShowProgressBarAction())
+        ApplicationUtils.runOnUiThread(Runnable {
+            getView<HomeFragment>().addAction(ShowProgressBarAction())
+        })
         Providers.getAccounts(getName())
         Providers.getBalance(getName())
         Providers.getCurrency(getName())
     }
 
     override fun response(result: ExtResult) {
-        getView<HomeFragment>().addAction(HideProgressBarAction())
-        if (!result.hasError()) {
-            when (result.getName()) {
-                GetAccountsRequest.NAME -> {
-                    data.accounts = result.getData() as List<Account>
-                    getView<HomeFragment>().addAction(DataAction(Actions.RefreshViews, data))
+        ApplicationUtils.runOnUiThread(Runnable {
+            getView<HomeFragment>().addAction(HideProgressBarAction())
+            if (!result.hasError()) {
+                when (result.getName()) {
+                    GetAccountsRequest.NAME -> {
+                        data.accounts = result.getData() as List<Account>
+                        getView<HomeFragment>().addAction(DataAction(RefreshAccounts, data))
+                    }
+                    GetBalanceRequest.NAME -> {
+                        data.balance = result.getData() as List<Balance>
+                        getView<HomeFragment>().addAction(DataAction(RefreshBalance, data))
+                    }
+                    GetCurrencyRequest.NAME -> {
+                        data.currencies = result.getData() as List<String>
+                    }
                 }
-                GetBalanceRequest.NAME -> {
-                    data.balance = result.getData() as List<Balance>
-                    getView<HomeFragment>().addAction(DataAction(Actions.RefreshViews, data))
-                }
-                GetCurrencyRequest.NAME -> {
-                    data.currencies = result.getData() as List<String>
-                }
-            }
-        } else {
-            getView<HomeFragment>().addAction(
-                ShowMessageAction(result.getErrorText()!!).setType(
-                    ApplicationUtils.MESSAGE_TYPE_ERROR
+            } else {
+                getView<HomeFragment>().addAction(
+                    ShowMessageAction(result.getErrorText()!!).setType(
+                        ApplicationUtils.MESSAGE_TYPE_ERROR
+                    )
                 )
-            )
-        }
+            }
+        })
     }
 
     override fun onAction(action: IAction): Boolean {
         if (!isValid()) return false
+
+        if (action is DataAction<*>) {
+            when (action.getName()) {
+                OnClickAccount -> {
+                    return true
+                }
+            }
+        }
 
         if (action is ApplicationAction) {
             when (action.getName()) {
@@ -145,9 +157,10 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
     private fun createDeposit() {
         val activity = getView<HomeFragment>().activity
         if (activity is IRouterProvider && activity.isValid()) {
-           // activity.showFragment(CreateAccountFragment.newInstance())
+            // activity.showFragment(CreateAccountFragment.newInstance())
         }
     }
+
     private fun createCard() {
         val activity = getView<HomeFragment>().activity
         if (activity is IRouterProvider && activity.isValid()) {

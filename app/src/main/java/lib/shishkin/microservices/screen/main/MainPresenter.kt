@@ -56,7 +56,7 @@ class MainPresenter(model: MainModel) : AbsModelPresenter(model) {
     }
 
     private fun parseIntent(intent: Intent) {
-        val router = ApplicationSingleton.instance.routerProvider
+        val router = getView<MainActivity>()
         when (intent.action) {
             "android.intent.action.MAIN" -> {
                 router.showRootFragment()
@@ -69,7 +69,7 @@ class MainPresenter(model: MainModel) : AbsModelPresenter(model) {
                 }
             }
         }
-        getView<MainActivity>().addAction(ApplicationAction(ClearIntentAction))
+        router.addAction(ApplicationAction(ClearIntentAction))
     }
 
 }

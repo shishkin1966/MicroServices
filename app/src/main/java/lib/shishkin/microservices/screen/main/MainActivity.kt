@@ -26,8 +26,6 @@ class MainActivity : AbsContentActivity() {
     override fun onAction(action: IAction): Boolean {
         if (!isValid()) return false
 
-        if (actionHandler.onAction(action)) return true
-
         if (action is SnackBarAction) {
             onBackPressedPresenter.onClick()
             return true
@@ -41,6 +39,8 @@ class MainActivity : AbsContentActivity() {
                 }
             }
         }
+
+        if (actionHandler.onAction(action)) return true
 
         ApplicationSingleton.instance.onError(
             getName(),

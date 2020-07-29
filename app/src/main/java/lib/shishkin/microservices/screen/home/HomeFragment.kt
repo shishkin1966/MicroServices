@@ -71,16 +71,20 @@ class HomeFragment : AbsContentFragment() {
     override fun onAction(action: IAction): Boolean {
         if (!isValid()) return false
 
-        if (actionHandler.onAction(action)) return true
-
         if (action is DataAction<*>) {
             when (action.getName()) {
-                Actions.RefreshViews -> {
-                    refreshViews(action.getData() as HomeData?)
+                HomePresenter.RefreshAccounts -> {
+                    refreshAccounts(action.getData() as HomeData?)
+                    return true
+                }
+                HomePresenter.RefreshBalance -> {
+                    refreshBalance(action.getData() as HomeData?)
                     return true
                 }
             }
         }
+
+        if (actionHandler.onAction(action)) return true
 
         ApplicationSingleton.instance.onError(
             getName(),
@@ -109,19 +113,16 @@ class HomeFragment : AbsContentFragment() {
         return true
     }
 
-    private fun refreshViews(viewData: HomeData?) {
+    private fun refreshAccounts(viewData: HomeData?) {
         if (viewData == null) return
 
-        if (viewData.accounts != null) {
-            accountsAdapter.setItems(viewData.accounts!!)
-            showAccountsBalance(viewData.balance)
-        }
+        accountsAdapter.setItems(viewData.accounts!!)
     }
 
-    private fun showAccountsBalance(list: List<Balance>?) {
-        if (list == null) return
+    private fun refreshBalance(viewData: HomeData?) {
+        if (viewData == null) return
 
-        balanceAdapter.setItems(list)
+        balanceAdapter.setItems(viewData.balance!!)
     }
 
     override fun getName(): String {
