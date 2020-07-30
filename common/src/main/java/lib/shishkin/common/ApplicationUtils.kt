@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.core.app.ActivityCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.fragment.app.Fragment
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.annimon.stream.Stream
 import com.annimon.stream.function.Predicate
@@ -169,6 +170,40 @@ class ApplicationUtils {
                         listPermissionsNeeded.toArray(arrayPermissionsNeeded)
                         ActivityCompat.requestPermissions(
                             activity,
+                            arrayPermissionsNeeded,
+                            REQUEST_PERMISSIONS
+                        )
+                        return false
+                    }
+                } else {
+                    return true
+                }
+            }
+            return false
+        }
+
+        @JvmStatic
+        fun grantPermissions(permissions: Array<String>?, fragment: Fragment): Boolean {
+            val context = fragment.activity?.applicationContext
+            if (permissions != null && context != null) {
+                if (hasMarshmallow()) {
+                    val listPermissionsNeeded = ArrayList<String>()
+
+                    for (permission in permissions) {
+                        if (ActivityCompat.checkSelfPermission(
+                                context,
+                                permission
+                            ) != PackageManager.PERMISSION_GRANTED
+                        ) {
+                            listPermissionsNeeded.add(permission)
+                        }
+                    }
+
+                    if (listPermissionsNeeded.isNotEmpty()) {
+                        val arrayPermissionsNeeded =
+                            arrayOfNulls<String>(listPermissionsNeeded.size)
+                        listPermissionsNeeded.toArray(arrayPermissionsNeeded)
+                        fragment.requestPermissions(
                             arrayPermissionsNeeded,
                             REQUEST_PERMISSIONS
                         )

@@ -17,4 +17,9 @@
     <string name="fragment_open_account_transaction_balance_subtitle">Баланс по счету</string>
     <string name="fragment_open_account_transaction_balance_value_hint">Например: 100000</string>
 
+    <string name="location_error">Ошибка геолокации. Попробуйте еще раз</string>
+    <string name="restart_location">Перегрузите устройство. Не работатает служба получения адреса</string>
+
+    <string name="example_location">Пример работы с геолокацией</string>
+    <string name="example_net">Пример работы с сетевыми запросами</string>
 </resources>

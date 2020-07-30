@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
 import lib.shishkin.sl.action.ApplicationAction
@@ -18,7 +19,7 @@ import lib.shishkin.sl.model.IModel
 import lib.shishkin.sl.ui.AbsContentFragment
 
 
-class HomeFragment : AbsContentFragment() {
+class HomeFragment : AbsContentFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
         const val NAME = "HomeFragment"
@@ -36,6 +37,7 @@ class HomeFragment : AbsContentFragment() {
     private lateinit var balanceView: RecyclerView
     private lateinit var depositsView: RecyclerView
     private lateinit var cardsView: RecyclerView
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun createModel(): IModel {
         return HomeModel(this)
@@ -64,6 +66,14 @@ class HomeFragment : AbsContentFragment() {
         balanceView = view.findViewById(R.id.balance_list)
         balanceView.layoutManager = LinearLayoutManager(activity)
         balanceView.adapter = balanceAdapter
+
+        view.findViewById<TextView>(R.id.more).setOnClickListener(this::onClick)
+
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout)
+        swipeRefreshLayout.setColorSchemeResources(R.color.blue)
+        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.gray_light)
+        swipeRefreshLayout.setOnRefreshListener(this)
+
     }
 
     override fun onAction(action: IAction): Boolean {
@@ -141,7 +151,19 @@ class HomeFragment : AbsContentFragment() {
                 getModel<HomeModel>().getPresenter<HomePresenter>()
                     .addAction(ApplicationAction(HomePresenter.OnClickCreateCard))
             }
+            R.id.more -> {
+                getModel<HomeModel>().getPresenter<HomePresenter>()
+                    .addAction(ApplicationAction(HomePresenter.OnClickMore))
+            }
         }
+    }
+
+    override fun onRefresh() {
+        if (swipeRefreshLayout.isRefreshing) {
+            swipeRefreshLayout.isRefreshing = false
+        }
+        getModel<HomeModel>().getPresenter<HomePresenter>()
+            .addAction(ApplicationAction(HomePresenter.OnSwipeRefresh))
     }
 
 }

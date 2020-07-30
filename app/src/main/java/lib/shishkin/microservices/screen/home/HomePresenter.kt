@@ -12,6 +12,7 @@ import lib.shishkin.microservices.request.GetAccountsRequest
 import lib.shishkin.microservices.request.GetBalanceRequest
 import lib.shishkin.microservices.request.GetCurrencyRequest
 import lib.shishkin.microservices.screen.create_account.CreateAccountFragment
+import lib.shishkin.microservices.screen.more.MoreFragment
 import lib.shishkin.sl.action.*
 import lib.shishkin.sl.data.ExtResult
 import lib.shishkin.sl.model.AbsModelPresenter
@@ -30,8 +31,10 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
         const val OnClickCreateAccount = "OnClickCreateAccount"
         const val OnClickCreateDeposit = "OnClickCreateDeposit"
         const val OnClickCreateCard = "OnClickCreateCard"
+        const val OnClickMore = "OnClickMore"
         const val RefreshAccounts = "RefreshAccounts"
         const val RefreshBalance = "RefreshBalance"
+        const val OnSwipeRefresh = "OnSwipeRefresh"
     }
 
     private lateinit var data: HomeData
@@ -118,6 +121,15 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
                     createCard()
                     return true
                 }
+                OnClickMore -> {
+                    showMore()
+                    return true
+                }
+                OnSwipeRefresh -> {
+                    data.clear()
+                    getData()
+                    return true
+                }
             }
         }
 
@@ -172,6 +184,13 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
         val activity = getView<HomeFragment>().activity
         if (activity is IRouterProvider && activity.isValid()) {
             // activity.showFragment(CreateAccountFragment.newInstance())
+        }
+    }
+
+    private fun showMore() {
+        val activity = getView<HomeFragment>().activity
+        if (activity is IRouterProvider && activity.isValid()) {
+            activity.showFragment(MoreFragment.newInstance())
         }
     }
 }

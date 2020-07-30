@@ -1,6 +1,7 @@
 package lib.shishkin.microservices
 
 import lib.shishkin.microservices.provider.DbProvider
+import lib.shishkin.microservices.provider.LocationUnion
 import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.sl.INamed
 import lib.shishkin.sl.IProvider
@@ -34,6 +35,7 @@ class ProviderFactory : IProviderFactory, INamed {
                 DbProvider.NAME -> DbProvider()
                 NetExecutor.NAME -> NetExecutor()
                 NotificationProvider.NAME -> NotificationProvider()
+                LocationUnion.NAME -> LocationUnion()
                 else -> Class.forName(name).newInstance() as IProvider
             }
         } catch (e: Exception) {
