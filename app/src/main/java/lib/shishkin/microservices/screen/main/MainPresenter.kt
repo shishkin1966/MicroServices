@@ -61,7 +61,7 @@ class MainPresenter(model: MainModel) : AbsModelPresenter(model) {
             "android.intent.action.MAIN" -> {
                 router.showRootFragment()
             }
-            ApplicationConstant.ACTION_CLICK -> {
+            ApplicationConstant.NOTIFICATION_CLICK -> {
                 if (router.hasTopFragment()) {
                     router.switchToTopFragment()
                 } else {

@@ -55,6 +55,10 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
         ApplicationUtils.runOnUiThread(Runnable {
             getView<HomeFragment>().addAction(ShowProgressBarAction())
         })
+        getAccounts()
+    }
+
+    private fun getAccounts() {
         Providers.getAccounts(getName())
         Providers.getBalance(getName())
         Providers.getCurrency(getName())
@@ -62,7 +66,6 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
 
     override fun response(result: ExtResult) {
         ApplicationUtils.runOnUiThread(Runnable {
-            getView<HomeFragment>().addAction(HideProgressBarAction())
             if (!result.hasError()) {
                 when (result.getName()) {
                     GetAccountsRequest.NAME -> {
@@ -76,6 +79,9 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
                     GetCurrencyRequest.NAME -> {
                         data.currencies = result.getData() as List<String>
                     }
+                }
+                if (data.isFull()) {
+                    getView<HomeFragment>().addAction(HideProgressBarAction())
                 }
             } else {
                 getView<HomeFragment>().addAction(
@@ -135,7 +141,8 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
         if (name == ObjectObservable.NAME) {
             when (obj.toString()) {
                 Account.TABLE -> {
-                    getData()
+                    data.clearAccounts()
+                    getAccounts()
                 }
             }
         }

@@ -49,12 +49,4 @@ interface IErrorProvider : IProvider {
      */
     fun onError(error: ExtError)
 
-    /**
-     * Получить путь к файлу лога ошибок
-     *
-     * @return путь к файлу лога ошибок
-     */
-    fun getPath(): String
-
-    fun checkLog(context: Context)
 }

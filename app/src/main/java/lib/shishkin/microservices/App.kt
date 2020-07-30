@@ -1,10 +1,11 @@
 package lib.shishkin.microservices
 
-import android.widget.Toast
-import lib.shishkin.common.ApplicationUtils
-import lib.shishkin.microservices.db.*
+import lib.shishkin.microservices.db.Dao
+import lib.shishkin.microservices.db.Db
 import lib.shishkin.microservices.observe.ScreenObservableSubscriber
 import lib.shishkin.microservices.provider.DbProvider
+import lib.shishkin.microservices.provider.notification.INotificationProvider
+import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.IProviderSubscriber
 import lib.shishkin.sl.message.IMessage
@@ -32,18 +33,22 @@ class App : ApplicationProvider() {
         serviceLocator = ServiceLocatorSingleton.instance
 
         ServiceLocatorSingleton.instance.registerSubscriber(screenObservableSubscriber)
+
+        val provider = serviceLocator?.get<INotificationProvider>(NotificationProvider.NAME)
+        provider?.addNotification(getString(R.string.app_name),getString(R.string.app_start))
     }
 
+    // событие экран включили
     fun onScreenOn() {
-        ApplicationUtils.showToast(
-            appContext,
-            "Screen on",
-            Toast.LENGTH_SHORT,
-            ApplicationUtils.MESSAGE_TYPE_INFO
-        )
     }
 
+    // событие экран выключили
     fun onScreenOff() {
+    }
+
+    // событие старт приложения
+    fun onBoot() {
+        ServiceLocatorSingleton.instance
     }
 
     fun <C : IProvider> get(name: String): C? {

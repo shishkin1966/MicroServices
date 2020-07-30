@@ -20,4 +20,27 @@ class HomeData {
         currencies = null
         balance = null
     }
+
+    fun clearAccounts() {
+        accounts = null
+        balance = null
+        currencies = null
+    }
+
+    fun clearDeposits() {
+        deposits = null
+        balance = null
+        currencies = null
+    }
+
+    fun clearCards() {
+        cards = null
+        balance = null
+        currencies = null
+    }
+
+    fun isFull() : Boolean {
+        //return (accounts != null && balance != null &&  deposits != null && cards != null && currencies != null)
+        return (accounts != null && balance != null && currencies != null)
+    }
 }
