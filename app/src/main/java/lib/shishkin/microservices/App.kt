@@ -4,6 +4,8 @@ import lib.shishkin.microservices.db.Dao
 import lib.shishkin.microservices.db.Db
 import lib.shishkin.microservices.observe.ScreenObservableSubscriber
 import lib.shishkin.microservices.provider.DbProvider
+import lib.shishkin.microservices.provider.ILocationUnion
+import lib.shishkin.microservices.provider.LocationUnion
 import lib.shishkin.microservices.provider.notification.INotificationProvider
 import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.sl.IProvider
@@ -97,6 +99,10 @@ class App : ApplicationProvider() {
 
     var routerProvider: IRouterProvider
         get() = activityProvider.getActivity<IActivity>() as IRouterProvider
+        private set(value) {}
+
+    var locationProvider: ILocationUnion
+        get() = get(LocationUnion.NAME)!!
         private set(value) {}
 
     fun addNotMandatoryMessage(message: IMessage) {

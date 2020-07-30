@@ -10,268 +10,269 @@
     android:focusable="true"
     android:focusableInTouchMode="true">
 
-    <RelativeLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/balanceLL"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:background="@color/gray"
-            android:minHeight="@dimen/menu_header_height"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/dimen_16dp"
-                android:layout_marginEnd="@dimen/dimen_8dp"
-                android:layout_weight="1"
-                android:text="Баланс"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_xlarge" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/balance_list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/dimen_8dp"
-                android:layout_marginTop="@dimen/dimen_4dp"
-                android:layout_marginEnd="@dimen/dimen_16dp"
-                android:layout_marginBottom="@dimen/dimen_4dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@id/bottomMenu"
-            android:layout_below="@+id/balanceLL"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:background="#FFFFFF">
 
             <LinearLayout
-                android:id="@+id/deposits"
+                android:id="@+id/balanceLL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/background"
-                android:orientation="vertical"
-                android:scrollbars="vertical">
-
-                <LinearLayout
-                    style="@style/HeaderItemStyle"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/CreateDeposit"
-
-                        android:layout_width="@dimen/dimen_40dp"
-                        android:layout_height="@dimen/dimen_40dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="@dimen/dimen_12dp"
-                        android:layout_marginEnd="@dimen/dimen_12dp"
-                        android:clickable="true"
-                        android:drawableStart="@drawable/ic_circle" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/deposits"
-                        android:textColor="@color/blue2"
-                        android:textSize="@dimen/text_size_xlarge" />
-
-                </LinearLayout>
-
-                <View style="@style/HorizontalDivider" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/deposits_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@color/white" />
-
-                <View style="@style/HorizontalDivider" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/accounts"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background"
-                android:orientation="vertical"
-                android:scrollbars="vertical">
-
-                <LinearLayout
-                    style="@style/HeaderItemStyle"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/CreateAccount"
-                        android:layout_width="@dimen/dimen_40dp"
-                        android:layout_height="@dimen/dimen_40dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="@dimen/dimen_12dp"
-                        android:layout_marginEnd="@dimen/dimen_12dp"
-                        android:clickable="true"
-                        android:drawableStart="@drawable/ic_circle" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/accounts"
-                        android:textColor="@color/blue2"
-                        android:textSize="@dimen/text_size_xlarge" />
-
-                </LinearLayout>
-
-                <View style="@style/HorizontalDivider" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/accounts_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:background="@color/white" />
-
-                <View style="@style/HorizontalDivider" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/cards"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background"
-                android:orientation="vertical"
-                android:scrollbars="vertical">
-
-                <LinearLayout
-                    style="@style/HeaderItemStyle"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/CreateCard"
-                        android:layout_width="@dimen/dimen_40dp"
-                        android:layout_height="@dimen/dimen_40dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginStart="@dimen/dimen_12dp"
-                        android:layout_marginEnd="@dimen/dimen_12dp"
-                        android:clickable="true"
-                        android:drawableStart="@drawable/ic_circle" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:text="@string/cards"
-                        android:textColor="@color/blue2"
-                        android:textSize="@dimen/text_size_xlarge" />
-
-                </LinearLayout>
-
-                <View style="@style/HorizontalDivider" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cards_list"
-                    android:background="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical" />
-
-                <View style="@style/HorizontalDivider" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:layout_below="@+id/balanceLL"
-            android:background="@drawable/below_shadow" />
-
-        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-            android:id="@+id/progressBar"
-            style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="-6dp"
-            android:indeterminate="true"
-            android:visibility="invisible"
-            app:mpb_indeterminateTint="@color/orange"
-            app:mpb_progressStyle="horizontal"
-            app:mpb_showProgressBackground="false" />
-
-        <LinearLayout
-            android:id="@+id/bottomMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_56dp"
-                android:background="@color/white"
+                android:layout_alignParentTop="true"
+                android:background="@color/gray"
+                android:minHeight="@dimen/menu_header_height"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/exchange_cryptorates"
-                    style="@style/SideMenuBottomButtonStyle"
-                    android:drawableTop="@drawable/ic_home"
-                    android:gravity="center"
-                    android:text="@string/my_bank" />
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginEnd="@dimen/dimen_8dp"
+                    android:layout_weight="1"
+                    android:text="Баланс"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_xlarge" />
 
-                <View
-                    style="@style/VerticalDivider"
-                    android:background="@drawable/below_shadow" />
-
-                <TextView
-                    android:id="@+id/exchange_rates"
-                    style="@style/SideMenuBottomButtonStyle"
-                    android:drawableTop="@drawable/ic_money"
-                    android:text="@string/payment" />
-
-                <View
-                    style="@style/VerticalDivider"
-                    android:background="@drawable/below_shadow" />
-
-                <TextView
-                    android:id="@+id/address"
-                    style="@style/SideMenuBottomButtonStyle"
-                    android:drawableTop="@drawable/ic_history"
-                    android:text="@string/history" />
-
-                <View
-                    style="@style/VerticalDivider"
-                    android:background="@drawable/below_shadow" />
-
-                <TextView
-                    android:id="@+id/contact"
-                    style="@style/SideMenuBottomButtonStyle"
-                    android:drawableTop="@drawable/ic_more"
-                    android:text="@string/more" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/balance_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/dimen_8dp"
+                    android:layout_marginTop="@dimen/dimen_4dp"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:layout_marginBottom="@dimen/dimen_4dp" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/bottomMenu"
+                android:layout_below="@+id/balanceLL"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/deposits"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background"
+                    android:orientation="vertical"
+                    android:scrollbars="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:layout_above="@id/bottomMenu"
-            android:background="@drawable/above_shadow" />
-    </RelativeLayout>
+                    <LinearLayout
+                        style="@style/HeaderItemStyle"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/CreateDeposit"
+
+                            android:layout_width="@dimen/dimen_40dp"
+                            android:layout_height="@dimen/dimen_40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dimen_12dp"
+                            android:layout_marginEnd="@dimen/dimen_12dp"
+                            android:clickable="true"
+                            android:drawableStart="@drawable/ic_circle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/deposits"
+                            android:textColor="@color/blue2"
+                            android:textSize="@dimen/text_size_xlarge" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/deposits_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/white" />
+
+                    <View style="@style/HorizontalDivider" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/accounts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background"
+                    android:orientation="vertical"
+                    android:scrollbars="vertical">
+
+                    <LinearLayout
+                        style="@style/HeaderItemStyle"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/CreateAccount"
+                            android:layout_width="@dimen/dimen_40dp"
+                            android:layout_height="@dimen/dimen_40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dimen_12dp"
+                            android:layout_marginEnd="@dimen/dimen_12dp"
+                            android:clickable="true"
+                            android:drawableStart="@drawable/ic_circle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/accounts"
+                            android:textColor="@color/blue2"
+                            android:textSize="@dimen/text_size_xlarge" />
+
+                    </LinearLayout>
+
+                    <View style="@style/HorizontalDivider" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/accounts_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/white" />
+
+                    <View style="@style/HorizontalDivider" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background"
+                    android:orientation="vertical"
+                    android:scrollbars="vertical">
+
+                    <LinearLayout
+                        style="@style/HeaderItemStyle"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/CreateCard"
+                            android:layout_width="@dimen/dimen_40dp"
+                            android:layout_height="@dimen/dimen_40dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dimen_12dp"
+                            android:layout_marginEnd="@dimen/dimen_12dp"
+                            android:clickable="true"
+                            android:drawableStart="@drawable/ic_circle" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="@string/cards"
+                            android:textColor="@color/blue2"
+                            android:textSize="@dimen/text_size_xlarge" />
+
+                    </LinearLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/cards_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/white" />
+
+                    <View style="@style/HorizontalDivider" />
+
+                </LinearLayout>
 
 
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_below="@+id/balanceLL"
+                android:background="@drawable/below_shadow" />
+
+            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+                android:id="@+id/progressBar"
+                style="@style/Widget.MaterialProgressBar.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="-6dp"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                app:mpb_indeterminateTint="@color/orange"
+                app:mpb_progressStyle="horizontal"
+                app:mpb_showProgressBackground="false" />
+
+            <LinearLayout
+                android:id="@+id/bottomMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_56dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/exchange_cryptorates"
+                        style="@style/SideMenuBottomButtonStyle"
+                        android:drawableTop="@drawable/ic_home"
+                        android:gravity="center"
+                        android:text="@string/my_bank" />
+
+                    <View
+                        style="@style/VerticalDivider"
+                        android:background="@drawable/below_shadow" />
+
+                    <TextView
+                        android:id="@+id/exchange_rates"
+                        style="@style/SideMenuBottomButtonStyle"
+                        android:drawableTop="@drawable/ic_money"
+                        android:text="@string/payment" />
+
+                    <View
+                        style="@style/VerticalDivider"
+                        android:background="@drawable/below_shadow" />
+
+                    <TextView
+                        android:id="@+id/address"
+                        style="@style/SideMenuBottomButtonStyle"
+                        android:drawableTop="@drawable/ic_history"
+                        android:text="@string/history" />
+
+                    <View
+                        style="@style/VerticalDivider"
+                        android:background="@drawable/below_shadow" />
+
+                    <TextView
+                        android:id="@+id/more"
+                        style="@style/SideMenuBottomButtonStyle"
+                        android:drawableTop="@drawable/ic_more"
+                        android:text="@string/more" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_above="@id/bottomMenu"
+                android:background="@drawable/above_shadow" />
+        </RelativeLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
