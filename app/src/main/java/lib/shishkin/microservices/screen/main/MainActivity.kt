@@ -88,10 +88,6 @@ class MainActivity : AbsContentActivity() {
 
         addLifecycleObserver(onBackPressedPresenter)
 
-        ApplicationUtils.grantPermissions(
-            permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-            activity = this
-        )
 
         if (intent != null) {
             getModel<MainModel>().getPresenter<MainPresenter>()
@@ -101,26 +97,6 @@ class MainActivity : AbsContentActivity() {
                 ApplicationSingleton.instance.activityProvider.getCurrentFragment<Fragment>()
             if (fragment == null) {
                 showRootFragment()
-            }
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if (requestCode == ApplicationUtils.REQUEST_PERMISSIONS) {
-            for (permission in permissions) {
-                if (permission == Manifest.permission.WRITE_EXTERNAL_STORAGE) {
-                    val union =
-                        ServiceLocatorSingleton.instance.get<IErrorProvider>(
-                            ErrorProvider.NAME
-                        )
-                    union?.checkLog(applicationContext)
-                }
             }
         }
     }

@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
-import lib.shishkin.microservices.action.Actions
-import lib.shishkin.microservices.data.Balance
 import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.DataAction
 import lib.shishkin.sl.action.IAction

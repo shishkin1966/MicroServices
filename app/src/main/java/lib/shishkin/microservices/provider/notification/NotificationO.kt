@@ -56,7 +56,7 @@ class NotificationO : INotificationShortProvider {
 
         val intent = Intent(context, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-        intent.action = ApplicationConstant.ACTION_CLICK
+        intent.action = ApplicationConstant.NOTIFICATION_CLICK
 
         val pendingIntent = PendingIntent.getActivity(
             context,

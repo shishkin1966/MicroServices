@@ -1,16 +1,11 @@
 package lib.shishkin.sl.provider
 
-import android.Manifest
-import android.content.Context
+import android.util.Log
 import android.widget.Toast
-import com.github.snowdream.android.util.FilePathGenerator
-import com.github.snowdream.android.util.Log
 import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.sl.AbsProvider
-import lib.shishkin.sl.BuildConfig
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.data.ExtError
-import java.io.File
 
 
 object ErrorSingleton {
@@ -20,76 +15,6 @@ object ErrorSingleton {
 class ErrorProvider : AbsProvider(), IErrorProvider {
     companion object {
         const val NAME = "ErrorProvider"
-    }
-
-    private val MAX_LOG_LENGTH: Long = 2000000//2Mb
-
-    override fun onRegister() {
-        checkLog(ApplicationProvider.appContext)
-    }
-
-    override fun checkLog(context: Context) {
-        try {
-            Log.setEnabled(true)
-            Log.setLog2FileEnabled(true)
-            var path: String? = null
-            if (BuildConfig.DEBUG && ApplicationUtils.checkPermission(
-                    context,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                )
-            ) {
-                path = context.getExternalFilesDir(null)?.absolutePath + File.separator
-            }
-            if (!path.isNullOrBlank()) {
-                val file = File(path)
-                if (!file.exists()) {
-                    file.mkdirs()
-                }
-                if (file.exists()) {
-                    Log.setFilePathGenerator(
-                        FilePathGenerator.DefaultFilePathGenerator(
-                            path,
-                            "log", ".txt"
-                        )
-                    )
-                    checkLogSize()
-                } else {
-                    Log.setEnabled(false)
-                }
-            } else {
-                Log.setEnabled(false)
-            }
-        } catch (e: Exception) {
-            Log.setEnabled(false)
-        }
-    }
-
-    override fun getPath(): String {
-        return Log.getPath()
-    }
-
-    private fun checkLogSize() {
-        val path = Log.getPath()
-
-        try {
-            val file = File(path)
-            if (file.exists()) {
-                if (file.length() == 0L) {
-                    Log.i(ApplicationUtils.getPhoneInfo())
-                }
-
-                if (file.length() > MAX_LOG_LENGTH) {
-                    val newPath = path + ".1"
-                    val newFile = File(newPath)
-                    if (newFile.exists()) {
-                        newFile.delete()
-                    }
-                    file.renameTo(newFile)
-                }
-            }
-        } catch (e: Exception) {
-            android.util.Log.e(NAME, e.message!!)
-        }
     }
 
     override fun onError(source: String, e: Exception) {

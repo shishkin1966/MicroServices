@@ -110,7 +110,7 @@ class AutoCompleteHandler<E>(name: String) {
     }
 
     private fun handleEvent(event: E) {
-        onHandleEventListener!!.onHandleEvent(event)
+        onHandleEventListener?.onHandleEvent(event)
     }
 
     private fun scheduleShutdown() {
