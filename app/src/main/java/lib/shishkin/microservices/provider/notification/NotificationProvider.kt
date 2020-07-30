@@ -1,11 +1,13 @@
 package lib.shishkin.microservices.provider.notification
 
+import android.app.Notification
 import lib.shishkin.microservices.PreferencesUtils
+import lib.shishkin.sl.AbsProvider
 import lib.shishkin.sl.AbsShortLiveProvider
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.provider.ApplicationProvider
 
-class NotificationProvider : AbsShortLiveProvider(), INotificationProvider {
+class NotificationProvider : AbsProvider(), INotificationProvider {
     companion object {
         const val NAME = "NotificationProvider"
     }
@@ -21,17 +23,10 @@ class NotificationProvider : AbsShortLiveProvider(), INotificationProvider {
     }
 
     override fun addNotification(title: String?, message: String) {
-        post()
         provider.addNotification(title, message)
     }
 
-    override fun replaceNotification(title: String?, message: String) {
-        post()
-        provider.replaceNotification(title, message)
-    }
-
     override fun clear() {
-        post()
         provider.clear()
     }
 
@@ -57,6 +52,10 @@ class NotificationProvider : AbsShortLiveProvider(), INotificationProvider {
 
     override fun setId(id: Int) {
         provider.setId(id)
+    }
+
+    override fun getNotification(title: String?, message: String): Notification {
+        return provider.getNotification(title, message)
     }
 
 

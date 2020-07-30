@@ -1,22 +1,20 @@
 package lib.shishkin.microservices.screen.main
 
-import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.OnBackPressedPresenter
 import lib.shishkin.microservices.R
-import lib.shishkin.microservices.ServiceLocatorSingleton
+import lib.shishkin.microservices.provider.notification.INotificationProvider
+import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.microservices.screen.home.HomeFragment
 import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.DataAction
 import lib.shishkin.sl.action.IAction
 import lib.shishkin.sl.action.SnackBarAction
 import lib.shishkin.sl.action.handler.ActivityActionHandler
-import lib.shishkin.sl.provider.ErrorProvider
-import lib.shishkin.sl.provider.IErrorProvider
+import lib.shishkin.sl.provider.ApplicationProvider
 import lib.shishkin.sl.ui.AbsContentActivity
 
 class MainActivity : AbsContentActivity() {
@@ -62,6 +60,11 @@ class MainActivity : AbsContentActivity() {
         setContentView(R.layout.activity_main)
 
         onNewIntent(intent)
+
+        val provider = ApplicationProvider.serviceLocator?.get<INotificationProvider>(
+            NotificationProvider.NAME
+        )
+        provider?.addNotification(getString(R.string.app_name), getString(R.string.app_start))
     }
 
     override fun onResume() {

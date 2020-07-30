@@ -1,6 +1,7 @@
 package lib.shishkin.microservices.provider.notification
 
 
+import android.app.Notification
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
@@ -15,25 +16,21 @@ import lib.shishkin.sl.provider.ApplicationProvider
 class NotificationM : INotificationShortProvider {
 
     private val GROUP_NAME = ApplicationProvider.appContext.getString(R.string.app_name)
-    private var id = -1
+    private var id = 1
     private val nm: NotificationManager = ApplicationUtils.getSystemService(
         ApplicationProvider.appContext,
         Context.NOTIFICATION_SERVICE
     )
 
     override fun addNotification(title: String?, message: String) {
-        id = System.currentTimeMillis().toInt()
-        show(title, message)
+        show(getNotification(title, message))
     }
 
-    override fun replaceNotification(title: String?, message: String) {
-        if (id == -1) {
-            id = System.currentTimeMillis().toInt()
-        }
-        show(title, message)
+    private fun show(notification : Notification) {
+        nm.notify(id, notification);
     }
 
-    private fun show(title: String?, message: String) {
+    override fun getNotification(title: String?, message: String): Notification {
         val context = ApplicationProvider.appContext
 
         val intent = Intent(context, MainActivity::class.java)
@@ -59,7 +56,7 @@ class NotificationM : INotificationShortProvider {
         if (!title.isNullOrEmpty()) {
             notificationBuilder.setContentTitle(title)
         }
-        nm.notify(id, notificationBuilder.build())
+       return(notificationBuilder.build())
     }
 
     override fun clear() {

@@ -2,6 +2,8 @@ package lib.shishkin.microservices.provider
 
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.data.Account
+import lib.shishkin.microservices.provider.notification.INotificationProvider
+import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.microservices.request.CreateAccountRequest
 import lib.shishkin.microservices.request.GetAccountsRequest
 import lib.shishkin.microservices.request.GetBalanceRequest
@@ -32,8 +34,7 @@ class Providers {
 
         @JvmStatic
         fun exitApplication() {
-            //ApplicationProvider.instance.stop()
-            ApplicationProvider.instance.toBackground()
+            ApplicationProvider.instance.stop()
         }
     }
 }

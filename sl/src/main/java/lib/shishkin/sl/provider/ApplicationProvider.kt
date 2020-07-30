@@ -43,16 +43,11 @@ open class ApplicationProvider : MultiDexApplication(),
         isExit = true
 
         if (serviceLocator != null) {
-            toBackground()
-            serviceLocator?.stop()
+            val union = serviceLocator?.get<ActivityUnion>(
+                ActivityUnion.NAME
+            )
+            union!!.stop()
         }
-    }
-
-    override fun toBackground() {
-        val union = serviceLocator?.get<ActivityUnion>(
-            ActivityUnion.NAME
-        )
-        union!!.getRouter()?.toBackground()
     }
 
     override fun getName(): String {

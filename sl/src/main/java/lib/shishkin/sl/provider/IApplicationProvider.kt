@@ -9,10 +9,4 @@ interface IApplicationProvider : IProvider {
      * @return true = приложение остановлено
      */
     fun isExit(): Boolean
-
-    /**
-     * Отправить приложение в фон
-     *
-     */
-    fun toBackground()
 }
