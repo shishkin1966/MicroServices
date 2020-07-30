@@ -6,15 +6,12 @@ import androidx.fragment.app.Fragment
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.OnBackPressedPresenter
 import lib.shishkin.microservices.R
-import lib.shishkin.microservices.provider.notification.INotificationProvider
-import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.microservices.screen.home.HomeFragment
 import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.DataAction
 import lib.shishkin.sl.action.IAction
 import lib.shishkin.sl.action.SnackBarAction
 import lib.shishkin.sl.action.handler.ActivityActionHandler
-import lib.shishkin.sl.provider.ApplicationProvider
 import lib.shishkin.sl.ui.AbsContentActivity
 
 class MainActivity : AbsContentActivity() {
@@ -61,10 +58,10 @@ class MainActivity : AbsContentActivity() {
 
         onNewIntent(intent)
 
-        val provider = ApplicationProvider.serviceLocator?.get<INotificationProvider>(
-            NotificationProvider.NAME
+        ApplicationSingleton.instance.addNotification(
+            getString(R.string.app_name),
+            getString(R.string.app_start)
         )
-        provider?.addNotification(getString(R.string.app_name), getString(R.string.app_start))
     }
 
     override fun onResume() {
