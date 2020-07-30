@@ -7,6 +7,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.microservices.ApplicationConstant
 import lib.shishkin.microservices.R
@@ -20,13 +21,22 @@ class Notification() : INotificationShortProvider {
         ApplicationProvider.appContext,
         Context.NOTIFICATION_SERVICE
     )
+    private var isForeground = false
 
     override fun addNotification(title: String?, message: String) {
-        show(getNotification(title, message))
+        show(title, message)
     }
 
-    private fun show(notification : Notification) {
-        nm.notify(id, notification);
+    private fun show(title: String?, message: String) {
+        val serviceIntent = Intent(ApplicationProvider.appContext, NotificationService::class.java)
+        serviceIntent.putExtra("title", title)
+        serviceIntent.putExtra("message", message)
+        if (!isForeground) {
+            isForeground = true
+            ContextCompat.startForegroundService(ApplicationProvider.appContext, serviceIntent)
+        } else {
+            nm.notify(id, getNotification(title, message))
+        }
     }
 
     override fun clear() {
