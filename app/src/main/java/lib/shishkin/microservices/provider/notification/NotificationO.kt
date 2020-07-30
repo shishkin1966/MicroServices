@@ -1,17 +1,19 @@
 package lib.shishkin.microservices.provider.notification
 
+
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-
-
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.microservices.ApplicationConstant
+import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
 import lib.shishkin.microservices.screen.main.MainActivity
 import lib.shishkin.sl.provider.ApplicationProvider
@@ -23,26 +25,18 @@ class NotificationO : INotificationShortProvider {
     }
 
     private val GROUP_NAME = ApplicationProvider.appContext.getString(R.string.app_name)
-    private var id = -1
+    private var id = 1
     private val nm: NotificationManager = ApplicationUtils.getSystemService(
         ApplicationProvider.appContext,
         Context.NOTIFICATION_SERVICE
     )
+    private var isForeground = false
 
     override fun addNotification(title: String?, message: String) {
-        id = System.currentTimeMillis().toInt()
         show(title, message)
     }
 
-    override fun replaceNotification(title: String?, message: String) {
-        if (id == -1) {
-            id = System.currentTimeMillis().toInt()
-        }
-        show(title, message)
-    }
-
-
-    private fun show(title: String?, message: String) {
+    override fun getNotification(title: String?, message: String) : Notification {
         val context = ApplicationProvider.appContext
 
         var channel: NotificationChannel? = nm.getNotificationChannel(GROUP_NAME)
@@ -77,9 +71,20 @@ class NotificationO : INotificationShortProvider {
         if (!title.isNullOrEmpty()) {
             notificationBuilder.setContentTitle(title)
         }
-        nm.notify(id, notificationBuilder.build())
+        return notificationBuilder.build();
     }
 
+    private fun show(title: String?, message: String) {
+        val serviceIntent = Intent(ApplicationProvider.appContext, NotificationService::class.java)
+        serviceIntent.putExtra("title", title)
+        serviceIntent.putExtra("message", message)
+        if (!isForeground) {
+            isForeground = true
+            ContextCompat.startForegroundService(ApplicationProvider.appContext, serviceIntent)
+        } else {
+            nm.notify(id, getNotification(title, message))
+        }
+    }
 
     override fun clear() {
         nm.cancelAll()
@@ -92,5 +97,6 @@ class NotificationO : INotificationShortProvider {
     override fun setId(id: Int) {
         this.id = id
     }
+
 
 }

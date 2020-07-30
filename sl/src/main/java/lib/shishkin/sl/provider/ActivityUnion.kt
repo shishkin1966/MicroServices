@@ -81,19 +81,6 @@ class ActivityUnion : AbsUnion<IActivity>(), IActivityUnion {
     }
 
     override fun onUnRegisterLastSubscriber() {
-        if (ApplicationProvider.instance.isExit()) {
-            val serviceLocator =
-                ApplicationProvider.serviceLocator
-            if (serviceLocator != null) {
-                for (provider in serviceLocator.getProviders()) {
-                    if (provider !is IActivityUnion && provider !is IApplicationProvider) {
-                        if (!provider.isPersistent()) {
-                            provider.stop()
-                        }
-                    }
-                }
-            }
-        }
     }
 
     override fun <F> getFragment(cls: Class<F>, id: Int): F? {

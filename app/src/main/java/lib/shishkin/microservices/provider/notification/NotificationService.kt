@@ -7,8 +7,7 @@ import android.os.IBinder
 import lib.shishkin.microservices.ApplicationSingleton
 
 
-class ForegroundService : Service() {
-    private val id: Int = 1;
+class NotificationService : Service() {
     private var notification: Notification? = null;
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
@@ -17,7 +16,7 @@ class ForegroundService : Service() {
         val provider =
             ApplicationSingleton.instance.get<INotificationProvider>(NotificationProvider.NAME)
         notification = provider?.getNotification(title, message!!)
-        startForeground(id, notification)
+        startForeground(provider?.getId()!!, notification)
         return START_STICKY_COMPATIBILITY
     }
 

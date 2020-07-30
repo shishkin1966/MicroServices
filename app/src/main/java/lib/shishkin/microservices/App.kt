@@ -33,9 +33,6 @@ class App : ApplicationProvider() {
         serviceLocator = ServiceLocatorSingleton.instance
 
         ServiceLocatorSingleton.instance.registerSubscriber(screenObservableSubscriber)
-
-        val provider = serviceLocator?.get<INotificationProvider>(NotificationProvider.NAME)
-        provider?.addNotification(getString(R.string.app_name),getString(R.string.app_start))
     }
 
     // событие экран включили
