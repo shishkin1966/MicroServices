@@ -1,6 +1,7 @@
 package lib.shishkin.microservices
 
 import lib.shishkin.microservices.provider.LocationUnion
+import lib.shishkin.microservices.provider.NetCbProvider
 import lib.shishkin.microservices.provider.NetProvider
 import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.sl.AbsServiceLocator
@@ -40,6 +41,7 @@ class ServiceLocator : AbsServiceLocator() {
         registerProvider(NotificationProvider.NAME)
         registerProvider(LocationUnion.NAME)
         registerProvider(NetProvider.NAME)
+        registerProvider(NetCbProvider.NAME)
     }
 
     override fun getProviderFactory(): IProviderFactory {

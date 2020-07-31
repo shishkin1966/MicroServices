@@ -2,6 +2,7 @@ package lib.shishkin.microservices
 
 import lib.shishkin.microservices.provider.DbProvider
 import lib.shishkin.microservices.provider.LocationUnion
+import lib.shishkin.microservices.provider.NetCbProvider
 import lib.shishkin.microservices.provider.NetProvider
 import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.sl.INamed
@@ -38,6 +39,7 @@ class ProviderFactory : IProviderFactory, INamed {
                 LocationUnion.NAME -> LocationUnion()
                 NetExecutor.NAME -> NetExecutor()
                 NetProvider.NAME -> NetProvider()
+                NetCbProvider.NAME -> NetCbProvider()
                 else -> Class.forName(name).newInstance() as IProvider
             }
         } catch (e: Exception) {
