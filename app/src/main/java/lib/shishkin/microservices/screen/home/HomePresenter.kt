@@ -34,7 +34,6 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
         const val OnClickMore = "OnClickMore"
         const val RefreshAccounts = "RefreshAccounts"
         const val RefreshBalance = "RefreshBalance"
-        const val OnSwipeRefresh = "OnSwipeRefresh"
     }
 
     private lateinit var data: HomeData
@@ -125,7 +124,7 @@ class HomePresenter(model: HomeModel) : AbsModelPresenter(model), IResponseListe
                     showMore()
                     return true
                 }
-                OnSwipeRefresh -> {
+                Actions.OnSwipeRefresh -> {
                     data.clear()
                     getData()
                     return true

@@ -3,9 +3,7 @@ package lib.shishkin.microservices
 import lib.shishkin.microservices.db.Dao
 import lib.shishkin.microservices.db.Db
 import lib.shishkin.microservices.observe.ScreenObservableSubscriber
-import lib.shishkin.microservices.provider.DbProvider
-import lib.shishkin.microservices.provider.ILocationUnion
-import lib.shishkin.microservices.provider.LocationUnion
+import lib.shishkin.microservices.provider.*
 import lib.shishkin.microservices.provider.notification.INotificationProvider
 import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.sl.IProvider
@@ -134,5 +132,9 @@ class App : ApplicationProvider() {
             NotificationProvider.NAME
         )
         provider?.addNotification(title, message)
+    }
+
+    fun getApi(): NetApi {
+        return ApplicationSingleton.instance.get<NetProvider>(NetProvider.NAME)!!.getApi()
     }
 }

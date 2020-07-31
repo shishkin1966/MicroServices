@@ -4,10 +4,7 @@ import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.data.Account
 import lib.shishkin.microservices.provider.notification.INotificationProvider
 import lib.shishkin.microservices.provider.notification.NotificationProvider
-import lib.shishkin.microservices.request.CreateAccountRequest
-import lib.shishkin.microservices.request.GetAccountsRequest
-import lib.shishkin.microservices.request.GetBalanceRequest
-import lib.shishkin.microservices.request.GetCurrencyRequest
+import lib.shishkin.microservices.request.*
 import lib.shishkin.sl.provider.ApplicationProvider
 
 class Providers {
@@ -36,5 +33,12 @@ class Providers {
         fun exitApplication() {
             ApplicationProvider.instance.stop()
         }
+
+        @JvmStatic
+        fun getTickers(subscriber: String) {
+            ApplicationSingleton.instance.get<NetProvider>(NetProvider.NAME)
+                ?.request(GetTickersRequest(subscriber))
+        }
+
     }
 }

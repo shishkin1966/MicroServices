@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
+import lib.shishkin.microservices.action.Actions
 import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.DataAction
 import lib.shishkin.sl.action.IAction
@@ -163,7 +164,7 @@ class HomeFragment : AbsContentFragment(), SwipeRefreshLayout.OnRefreshListener 
             swipeRefreshLayout.isRefreshing = false
         }
         getModel<HomeModel>().getPresenter<HomePresenter>()
-            .addAction(ApplicationAction(HomePresenter.OnSwipeRefresh))
+            .addAction(ApplicationAction(Actions.OnSwipeRefresh))
     }
 
 }

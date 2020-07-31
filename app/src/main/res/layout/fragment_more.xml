@@ -77,7 +77,7 @@
                 app:mrl_rippleOverlay="true">
 
                 <LinearLayout
-                    android:id="@+id/net"
+                    android:id="@+id/netJSON"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -92,7 +92,7 @@
                         android:gravity="center_vertical"
                         android:paddingLeft="@dimen/dimen_12dp"
                         android:paddingRight="@dimen/dimen_8dp"
-                        android:text="@string/example_net"
+                        android:text="@string/example_net_json"
                         android:textColor="@color/gray_text"
                         android:textSize="@dimen/text_size_large" />
 
@@ -107,6 +107,50 @@
             </com.balysv.materialripple.MaterialRippleLayout>
 
             <View style="@style/HorizontalThinDivider" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="@dimen/menu_item_height"
+                android:orientation="horizontal"
+                app:mrl_rippleAlpha="0.2"
+                app:mrl_rippleColor="#585858"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleHover="true"
+                app:mrl_rippleOverlay="true">
+
+                <LinearLayout
+                    android:id="@+id/netXML"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/HelveticaTextStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="@dimen/dimen_12dp"
+                        android:paddingRight="@dimen/dimen_8dp"
+                        android:text="@string/example_net_xml"
+                        android:textColor="@color/gray_text"
+                        android:textSize="@dimen/text_size_large" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingRight="@dimen/dimen_8dp"
+                        app:srcCompat="@drawable/chevron_right_dark" />
+                </LinearLayout>
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View style="@style/HorizontalThinDivider" />
+
 
         </LinearLayout>
 
