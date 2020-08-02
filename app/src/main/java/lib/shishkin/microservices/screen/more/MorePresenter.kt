@@ -2,6 +2,8 @@ package lib.shishkin.microservices.screen.more
 
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.screen.map.MapFragment
+import lib.shishkin.microservices.screen.net_json.NetJsonFragment
+import lib.shishkin.microservices.screen.net_xml.NetXmlFragment
 import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.IAction
 import lib.shishkin.sl.model.AbsModelPresenter
@@ -11,7 +13,8 @@ class MorePresenter(model: MoreModel) : AbsModelPresenter(model) {
     companion object {
         const val NAME = "MorePresenter"
         const val OnClickMap = "OnClickMap"
-        const val OnClickNet = "OnClickNet"
+        const val OnClickNetJson = "OnClickNetJson"
+        const val OnClickNetXML = "OnClickNetXML"
     }
 
     override fun isRegister(): Boolean {
@@ -31,8 +34,12 @@ class MorePresenter(model: MoreModel) : AbsModelPresenter(model) {
                     showMapFragment()
                     return true
                 }
-                OnClickNet -> {
-                    showNetFragment()
+                OnClickNetJson -> {
+                    showNetJsonFragment()
+                    return true
+                }
+                OnClickNetXML -> {
+                    showNetXMLFragment()
                     return true
                 }
             }
@@ -46,7 +53,18 @@ class MorePresenter(model: MoreModel) : AbsModelPresenter(model) {
         return false
     }
 
-    private fun showNetFragment() {
+    private fun showNetJsonFragment() {
+        val activity = getView<MoreFragment>().activity
+        if (activity is IRouterProvider && activity.isValid()) {
+            activity.showFragment(NetJsonFragment.newInstance())
+        }
+    }
+
+    private fun showNetXMLFragment() {
+        val activity = getView<MoreFragment>().activity
+        if (activity is IRouterProvider && activity.isValid()) {
+            activity.showFragment(NetXmlFragment.newInstance())
+        }
     }
 
     private fun showMapFragment() {
