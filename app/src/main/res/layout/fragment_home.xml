@@ -17,8 +17,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#FFFFFF">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/balanceLL"
@@ -62,7 +61,6 @@
                     android:id="@+id/deposits"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/background"
                     android:orientation="vertical"
                     android:scrollbars="vertical">
 
@@ -95,8 +93,7 @@
                         android:id="@+id/deposits_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/white" />
+                        android:layout_gravity="center_vertical"/>
 
                     <View style="@style/HorizontalDivider" />
 
@@ -106,7 +103,6 @@
                     android:id="@+id/accounts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/background"
                     android:orientation="vertical"
                     android:scrollbars="vertical">
 
@@ -140,8 +136,7 @@
                         android:id="@+id/accounts_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/white" />
+                        android:layout_gravity="center_vertical"/>
 
                     <View style="@style/HorizontalDivider" />
 
@@ -151,7 +146,6 @@
                     android:id="@+id/cards"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/background"
                     android:orientation="vertical"
                     android:scrollbars="vertical">
 
@@ -183,8 +177,7 @@
                         android:id="@+id/cards_list"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:background="@color/white" />
+                        android:layout_gravity="center_vertical"/>
 
                     <View style="@style/HorizontalDivider" />
 
