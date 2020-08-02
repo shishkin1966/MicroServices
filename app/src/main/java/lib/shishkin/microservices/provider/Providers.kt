@@ -41,11 +41,7 @@ class Providers {
         @JvmStatic
         fun getValCurs(subscriber: String, date: String) {
             ApplicationSingleton.instance.get<NetCbProvider>(NetCbProvider.NAME)
-                ?.request(
-                    GetValCursRequest(
-                        subscriber, date
-                    )
-                )
+                ?.request(GetValCursRequest(subscriber, date))
         }
 
     }
