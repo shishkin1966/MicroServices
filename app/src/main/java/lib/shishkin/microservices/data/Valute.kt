@@ -6,28 +6,28 @@ import org.simpleframework.xml.Root
 
 @Root(name = "Valute")
 class Valute  {
-    @Attribute(name = "ID")
+    @get:Attribute(name = "ID")
+    @set:Attribute(name = "ID")
     var id: String? = null
-        private set
 
-    @Element(name = "NumCode")
+    @get:Element(name = "NumCode")
+    @set:Element(name = "NumCode")
     var numCode: String? = null
-        private set
 
-    @Element(name = "CharCode")
+    @get:Element(name = "CharCode")
+    @set:Element(name = "CharCode")
     var charCode: String? = null
-        private set
 
-    @Element(name = "Nominal")
+    @get:Element(name = "Nominal")
+    @set:Element(name = "Nominal")
     var nominal: String? = null
-        private set
 
-    @Element(name = "Name")
+    @get:Element(name = "Name")
+    @set:Element(name = "Name")
     var name: String? = null
-        private set
 
-    @Element(name = "Value")
+    @get:Element(name = "Value")
+    @set:Element(name = "Value")
     var value: String? = null
-        private set
 
 }

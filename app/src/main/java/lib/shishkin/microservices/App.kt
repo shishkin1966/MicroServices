@@ -137,4 +137,8 @@ class App : ApplicationProvider() {
     fun getApi(): NetApi {
         return ApplicationSingleton.instance.get<NetProvider>(NetProvider.NAME)!!.getApi()
     }
+
+    fun getCbApi(): NetCbApi {
+        return ApplicationSingleton.instance.get<NetCbProvider>(NetCbProvider.NAME)!!.getApi()
+    }
 }

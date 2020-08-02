@@ -2,8 +2,6 @@ package lib.shishkin.microservices.provider
 
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.data.Account
-import lib.shishkin.microservices.provider.notification.INotificationProvider
-import lib.shishkin.microservices.provider.notification.NotificationProvider
 import lib.shishkin.microservices.request.*
 import lib.shishkin.sl.provider.ApplicationProvider
 
@@ -38,6 +36,16 @@ class Providers {
         fun getTickers(subscriber: String) {
             ApplicationSingleton.instance.get<NetProvider>(NetProvider.NAME)
                 ?.request(GetTickersRequest(subscriber))
+        }
+
+        @JvmStatic
+        fun getValCurs(subscriber: String, date: String) {
+            ApplicationSingleton.instance.get<NetCbProvider>(NetCbProvider.NAME)
+                ?.request(
+                    GetValCursRequest(
+                        subscriber, date
+                    )
+                )
         }
 
     }

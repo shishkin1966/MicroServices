@@ -1,24 +1,23 @@
-package lib.shishkin.microservices.screen.net_json
+package lib.shishkin.microservices.screen.net_xml
 
 import lib.shishkin.common.ApplicationUtils
+import lib.shishkin.common.formatDate
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.action.Actions
-import lib.shishkin.microservices.action.OnEditTextChangedAction
-import lib.shishkin.microservices.data.Ticker
+import lib.shishkin.microservices.data.ValCurs
 import lib.shishkin.microservices.provider.Providers
 import lib.shishkin.sl.action.*
 import lib.shishkin.sl.data.ExtResult
 import lib.shishkin.sl.model.AbsModelPresenter
 import lib.shishkin.sl.request.IResponseListener
 
-class NetJsonPresenter(model: NetJsonModel) : AbsModelPresenter(model),
+class NetXmlPresenter(model: NetXmlModel) : AbsModelPresenter(model),
     IResponseListener {
     companion object {
-        const val NAME = "NetJsonPresenter"
-        const val InitFilter = "InitFilter"
+        const val NAME = "NetXmlPresenter"
     }
 
-    private lateinit var data: TickerData
+    private lateinit var data: ValCursData
 
     override fun isRegister(): Boolean {
         return true
@@ -30,8 +29,7 @@ class NetJsonPresenter(model: NetJsonModel) : AbsModelPresenter(model),
 
     override fun onStart() {
         if (!::data.isInitialized) {
-            data = TickerData()
-            getView<NetJsonFragment>().addAction(DataAction(InitFilter, data))
+            data = ValCursData()
             getData()
         }
     }
@@ -48,23 +46,6 @@ class NetJsonPresenter(model: NetJsonModel) : AbsModelPresenter(model),
             }
         }
 
-        if (action is OnEditTextChangedAction) {
-            if (!::data.isInitialized) {
-                data = TickerData()
-            }
-            val arg = action.obj as String?
-            if (arg != data.filter) {
-                data.filter = arg
-                getView<NetJsonFragment>().addAction(
-                    DataAction(
-                        Actions.RefreshViews,
-                        data
-                    )
-                )
-            }
-            return true
-        }
-
         ApplicationSingleton.instance.onError(
             getName(),
             "Unknown action:$action",
@@ -75,30 +56,24 @@ class NetJsonPresenter(model: NetJsonModel) : AbsModelPresenter(model),
 
     private fun getData() {
         ApplicationUtils.runOnUiThread(Runnable {
-            getView<NetJsonFragment>().addAction(ShowProgressBarAction())
+            getView<NetXmlFragment>().addAction(ShowProgressBarAction())
         })
-        Providers.getTickers(getName())
+        Providers.getValCurs(getName(), System.currentTimeMillis().formatDate("dd/MM/yyyy"))
     }
 
     override fun response(result: ExtResult) {
         ApplicationUtils.runOnUiThread(Runnable {
-            getView<NetJsonFragment>().addAction(HideProgressBarAction())
+            getView<NetXmlFragment>().addAction(HideProgressBarAction())
             if (!result.hasError()) {
-                data.tickers = ArrayList(result.getData() as List<Ticker>)
-                getView<NetJsonFragment>().addAction(DataAction(Actions.RefreshViews, data))
+                data.valCurs = result.getData() as ValCurs
+                getView<NetXmlFragment>().addAction(DataAction(Actions.RefreshViews, data))
             } else {
-                getView<NetJsonFragment>().addAction(
+                getView<NetXmlFragment>().addAction(
                     ShowMessageAction(result.getErrorText()).setType(
                         ApplicationUtils.MESSAGE_TYPE_ERROR
                     )
                 )
             }
         })
-    }
-
-    override fun onDestroyView() {
-        data.saveFilter()
-
-        super.onDestroyView()
     }
 }

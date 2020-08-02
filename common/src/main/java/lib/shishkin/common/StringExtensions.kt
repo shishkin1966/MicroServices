@@ -288,3 +288,11 @@ fun String.getDir(): String {
         return ""
     }
 }
+
+fun Long.formatDate(format: String): String {
+    val date = Date(this)
+    val formatter =
+        SimpleDateFormat(format, Locale.getDefault())
+    return formatter.format(date)
+}
+

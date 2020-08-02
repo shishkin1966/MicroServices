@@ -3,6 +3,7 @@ package lib.shishkin.microservices.screen.more
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.screen.map.MapFragment
 import lib.shishkin.microservices.screen.net_json.NetJsonFragment
+import lib.shishkin.microservices.screen.net_xml.NetXmlFragment
 import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.IAction
 import lib.shishkin.sl.model.AbsModelPresenter
@@ -62,7 +63,7 @@ class MorePresenter(model: MoreModel) : AbsModelPresenter(model) {
     private fun showNetXMLFragment() {
         val activity = getView<MoreFragment>().activity
         if (activity is IRouterProvider && activity.isValid()) {
-            // activity.showFragment(MapFragment.newInstance())
+            activity.showFragment(NetXmlFragment.newInstance())
         }
     }
 
