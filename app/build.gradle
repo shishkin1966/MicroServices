@@ -78,9 +78,9 @@ dependencies {
     // сериализация
     implementation 'com.google.code.gson:gson:2.8.6'
 
-    implementation 'com.squareup.retrofit2:retrofit:2.6.2'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.2'
-    implementation('com.squareup.retrofit2:converter-simplexml:2.6.2') {
+    implementation 'com.squareup.retrofit2:retrofit:2.8.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.2'
+    implementation('com.squareup.retrofit2:converter-simplexml:2.8.2') {
         exclude group: 'xpp3', module: 'xpp3'
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
