@@ -23,6 +23,7 @@
     <string name="example_location">Пример работы с геолокацией</string>
     <string name="example_net_json">Пример работы с сетевыми запросами Json</string>
     <string name="example_net_xml">Пример работы с сетевыми запросами XML</string>
+    <string name="example_image">Пример загрузки картинок</string>
 
     <string name="search_hint">Найти</string>
 

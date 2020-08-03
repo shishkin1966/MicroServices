@@ -1,9 +1,11 @@
 package lib.shishkin.microservices.provider
 
 import lib.shishkin.microservices.ApplicationSingleton
+import lib.shishkin.microservices.action.ImageAction
 import lib.shishkin.microservices.data.Account
 import lib.shishkin.microservices.request.*
 import lib.shishkin.sl.provider.ApplicationProvider
+import lib.shishkin.sl.task.NetExecutor
 
 class Providers {
     companion object {
@@ -44,5 +46,10 @@ class Providers {
                 ?.request(GetValCursRequest(subscriber, date))
         }
 
+        @JvmStatic
+        fun getImage(action: ImageAction) {
+            ApplicationSingleton.instance.get<NetExecutor>(NetExecutor.NAME)
+                ?.execute(ImageRequest(action))
+        }
     }
 }

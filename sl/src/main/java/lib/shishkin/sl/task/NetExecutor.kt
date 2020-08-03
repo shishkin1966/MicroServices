@@ -16,7 +16,6 @@ import java.util.concurrent.PriorityBlockingQueue
 import java.util.concurrent.TimeUnit
 
 
-@Suppress("UNCHECKED_CAST")
 class NetExecutor : AbsRequestExecutor(), IObservableSubscriber {
     companion object {
         const val NAME = "NetExecutor"
