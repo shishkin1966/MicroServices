@@ -48,7 +48,7 @@ class MoreFragment : AbsContentFragment() {
         view.findViewById<LinearLayout>(R.id.map).setOnClickListener(this::onClick)
         view.findViewById<LinearLayout>(R.id.netJSON).setOnClickListener(this::onClick)
         view.findViewById<LinearLayout>(R.id.netXML).setOnClickListener(this::onClick)
-
+        view.findViewById<LinearLayout>(R.id.image).setOnClickListener(this::onClick)
     }
 
     private fun onClick(v: View?) {
@@ -64,6 +64,10 @@ class MoreFragment : AbsContentFragment() {
             R.id.netXML -> {
                 getModel<MoreModel>().getPresenter<MorePresenter>()
                     .addAction(ApplicationAction(MorePresenter.OnClickNetXML))
+            }
+            R.id.image -> {
+                getModel<MoreModel>().getPresenter<MorePresenter>()
+                    .addAction(ApplicationAction(MorePresenter.OnClickImage))
             }
         }
     }
