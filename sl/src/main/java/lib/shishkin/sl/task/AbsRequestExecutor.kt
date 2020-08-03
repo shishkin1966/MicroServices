@@ -2,8 +2,12 @@ package lib.shishkin.sl.task
 
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.request.IRequest
+import java.util.concurrent.Callable
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Future
+import java.util.concurrent.TimeUnit
 
-abstract class AbsRequestExecutor : IRequestExecutor, IProvider {
+abstract class AbsRequestExecutor : IRequestExecutor, IProvider, ExecutorService {
 
     abstract fun getExecutor(): RequestThreadPoolExecutor
 
@@ -53,5 +57,56 @@ abstract class AbsRequestExecutor : IRequestExecutor, IProvider {
         return if (other is IExecutor) 0 else 1
     }
 
+    override fun shutdown() {
+        getExecutor().shutdown()
+    }
+
+    override fun <T : Any?> submit(task: Callable<T>?): Future<T> {
+        return getExecutor().submit(task)
+    }
+
+    override fun <T : Any?> submit(task: Runnable?, result: T): Future<T> {
+        return getExecutor().submit(task, result)
+    }
+
+    override fun submit(task: Runnable?): Future<*> {
+        return getExecutor().submit(task)
+    }
+
+    override fun shutdownNow(): MutableList<Runnable> {
+        return getExecutor().shutdownNow()
+    }
+
+    override fun awaitTermination(timeout: Long, unit: TimeUnit?): Boolean {
+        return getExecutor().awaitTermination(timeout, unit)
+    }
+
+    override fun <T : Any?> invokeAny(tasks: MutableCollection<out Callable<T>>?): T {
+        return getExecutor().invokeAny(tasks)
+    }
+
+    override fun <T : Any?> invokeAny(
+        tasks: MutableCollection<out Callable<T>>?,
+        timeout: Long,
+        unit: TimeUnit?
+    ): T {
+        return getExecutor().invokeAny(tasks, timeout, unit)
+    }
+
+    override fun isTerminated(): Boolean {
+        return getExecutor().isTerminated
+    }
+
+    override fun <T : Any?> invokeAll(tasks: MutableCollection<out Callable<T>>?): MutableList<Future<T>> {
+        return getExecutor().invokeAll(tasks)
+    }
+
+    override fun <T : Any?> invokeAll(
+        tasks: MutableCollection<out Callable<T>>?,
+        timeout: Long,
+        unit: TimeUnit?
+    ): MutableList<Future<T>> {
+        return getExecutor().invokeAll(tasks, timeout, unit)
+    }
 
 }

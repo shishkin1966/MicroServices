@@ -5,6 +5,7 @@ import lib.shishkin.sl.provider.ErrorSingleton
 import lib.shishkin.sl.request.IRequest
 import lib.shishkin.sl.request.IResultMessageRequest
 import java.util.concurrent.BlockingQueue
+import java.util.concurrent.ExecutorService
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
 
@@ -22,7 +23,7 @@ class RequestThreadPoolExecutor(
     unit,
     workQueue,
     JobThreadFactory()
-), IExecutor {
+), IExecutor, ExecutorService {
     companion object {
         const val ACTION_NOTHING = -1
         const val ACTION_DELETE = 0
@@ -102,6 +103,5 @@ class RequestThreadPoolExecutor(
         clear()
         shutdownNow()
     }
-
 
 }

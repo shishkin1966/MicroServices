@@ -2,28 +2,33 @@ package lib.shishkin.microservices.provider
 
 import com.squareup.picasso.*
 import lib.shishkin.common.ApplicationUtils.Companion.runOnUiThread
+import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.action.ImageAction
 import lib.shishkin.sl.AbsProvider
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.provider.ApplicationProvider
+import lib.shishkin.sl.task.NetExecutor
 import java.lang.Exception
+import java.util.concurrent.ExecutorService
 
 
 class NetImageProvider : AbsProvider(), INetImageProvider {
-    private lateinit var picasso: Picasso
+    private var picasso: Picasso? = null
 
     companion object {
         const val NAME = "NetImageProvider"
     }
 
-    override fun onRegister() {
-        picasso = Picasso.Builder(ApplicationProvider.appContext).build()
-    }
-
     override fun downloadImage(action: ImageAction) {
+        if (picasso == null) {
+            val executor = ApplicationSingleton.instance.get<NetExecutor>(NetExecutor.NAME)
+            if (executor is ExecutorService) {
+                picasso = Picasso.Builder(ApplicationProvider.appContext).executor(executor).build()
+            }
+        }
         runOnUiThread(Runnable {
             if (!action.isWithCache()) {
-                val requestCreator: RequestCreator = picasso.load(action.getUrl())
+                val requestCreator: RequestCreator = picasso!!.load(action.getUrl())
                 if (action.getPlaceHolder() > 0) {
                     requestCreator.placeholder(action.getPlaceHolder())
                 }
@@ -35,7 +40,7 @@ class NetImageProvider : AbsProvider(), INetImageProvider {
                     override fun onError(exception: Exception) {}
                 })
             } else {
-                val requestCreator: RequestCreator = picasso.load(action.getUrl())
+                val requestCreator: RequestCreator = picasso!!.load(action.getUrl())
                 if (action.getPlaceHolder() > 0) {
                     requestCreator.placeholder(action.getPlaceHolder())
                 }
@@ -47,7 +52,7 @@ class NetImageProvider : AbsProvider(), INetImageProvider {
                         override fun onSuccess() {}
                         override fun onError(exception: Exception) {
                             //Try again online if cache failed
-                            val requestCreator1: RequestCreator = picasso.load(action.getUrl())
+                            val requestCreator1: RequestCreator = picasso!!.load(action.getUrl())
                             if (action.getPlaceHolder() > 0) {
                                 requestCreator1.placeholder(action.getPlaceHolder())
                             }
