@@ -24,7 +24,10 @@
     <string name="example_net_json">Пример работы с сетевыми запросами Json</string>
     <string name="example_net_xml">Пример работы с сетевыми запросами XML</string>
     <string name="example_image">Пример загрузки картинок</string>
+    <string name="example_capture">Пример сделать фото</string>
 
     <string name="search_hint">Найти</string>
+    <string name="take_foto">Сфотографировать</string>
+    <string name="select_foto">Выбрать</string>
 
 </resources>

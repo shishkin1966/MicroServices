@@ -6,12 +6,9 @@ import lib.shishkin.microservices.action.ImageAction
 import lib.shishkin.microservices.provider.Providers
 import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.IAction
-import lib.shishkin.sl.data.ExtResult
 import lib.shishkin.sl.model.AbsModelPresenter
-import lib.shishkin.sl.request.IResponseListener
 
-class NetImagePresenter(model: NetImageModel) : AbsModelPresenter(model),
-    IResponseListener {
+class NetImagePresenter(model: NetImageModel) : AbsModelPresenter(model) {
     companion object {
         const val NAME = "NetImagePresenter"
     }
@@ -48,6 +45,4 @@ class NetImagePresenter(model: NetImageModel) : AbsModelPresenter(model),
         return false
     }
 
-    override fun response(result: ExtResult) {
-    }
 }
