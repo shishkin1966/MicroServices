@@ -1,6 +1,7 @@
 package lib.shishkin.microservices.screen.more
 
 import lib.shishkin.microservices.ApplicationSingleton
+import lib.shishkin.microservices.screen.capture.CaptureFragment
 import lib.shishkin.microservices.screen.image.NetImageFragment
 import lib.shishkin.microservices.screen.map.MapFragment
 import lib.shishkin.microservices.screen.net_json.NetJsonFragment
@@ -17,6 +18,7 @@ class MorePresenter(model: MoreModel) : AbsModelPresenter(model) {
         const val OnClickNetJson = "OnClickNetJson"
         const val OnClickNetXML = "OnClickNetXML"
         const val OnClickImage = "OnClickImage"
+        const val OnClickCapture = "OnClickCapture"
     }
 
     override fun isRegister(): Boolean {
@@ -46,6 +48,10 @@ class MorePresenter(model: MoreModel) : AbsModelPresenter(model) {
                 }
                 OnClickImage -> {
                     showImageFragment()
+                    return true
+                }
+                OnClickCapture -> {
+                    showCaptureFragment()
                     return true
                 }
             }
@@ -84,6 +90,13 @@ class MorePresenter(model: MoreModel) : AbsModelPresenter(model) {
         val activity = getView<MoreFragment>().activity
         if (activity is IRouterProvider && activity.isValid()) {
             activity.showFragment(NetImageFragment.newInstance())
+        }
+    }
+
+    private fun showCaptureFragment() {
+        val activity = getView<MoreFragment>().activity
+        if (activity is IRouterProvider && activity.isValid()) {
+            activity.showFragment(CaptureFragment.newInstance())
         }
     }
 }

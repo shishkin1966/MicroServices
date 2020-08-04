@@ -128,7 +128,7 @@
 
     <lib.shishkin.common.RippleTextView
         android:id="@+id/openAccountButton"
-        style="@style/FlatOrangeButtonStyle"
+        style="@style/OrangeButtonStyle"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:enabled="false"

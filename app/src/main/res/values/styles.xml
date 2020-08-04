@@ -2,7 +2,14 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@color/background</item>
-        <item name="colorAccent">@color/orange</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+
     </style>
 
     <style name="VerticalDivider">
@@ -82,7 +89,7 @@
         <item name="android:focusableInTouchMode">false</item>
         <item name="android:clickable">true</item>
         <item name="android:minHeight">@dimen/button_min_height</item>
-        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
         <item name="android:gravity">center</item>
     </style>
 
@@ -91,5 +98,32 @@
         <item name="android:background">@drawable/orange_text_button_background</item>
     </style>
 
+    <style name="OrangeButtonStyle" parent="ButtonStyle">
+        <item name="android:textColor">@color/white_text_selector</item>
+        <item name="android:background">@drawable/orange_text_background</item>
+    </style>
+
+    <style name="FlatTransparentButtonStyle" parent="ButtonStyle">
+        <item name="android:textColor">@color/primary_text_selector</item>
+    </style>
+
+    <style name="FlatTransparentOrangeButtonStyle" parent="ButtonStyle">
+        <item name="android:textColor">@color/orange_text_selector</item>
+        <item name="android:background">@drawable/orange_pressed_text_button_background</item>
+    </style>
+
+    <style name="FlatTransparentButtonWithBorderStyle" parent="FlatTransparentButtonStyle">
+        <item name="android:textColor">@color/primary_text_selector</item>
+        <item name="android:background">@drawable/transparent_text_button_with_border_background</item>
+    </style>
+
+    <style name="FlatWhiteTransparentButtonWithBorderStyle" parent="FlatTransparentButtonStyle">
+        <item name="android:background">@drawable/transparent_white_text_button_with_border_background</item>
+        <item name="android:textColor">@color/white_text_selector</item>
+    </style>
+
+    <style name="ButtonWithBorderStyle" parent="FlatTransparentButtonStyle">
+        <item name="android:background">@drawable/text_button_background</item>
+    </style>
 
 </resources>
