@@ -14,6 +14,9 @@ import lib.shishkin.sl.provider.CrashProvider
 import lib.shishkin.sl.provider.ErrorSingleton
 import lib.shishkin.sl.provider.IObservableUnion
 import lib.shishkin.sl.provider.ObservableUnion
+import lib.shishkin.sl.task.DbExecutor
+import lib.shishkin.sl.task.NetExecutor
+import lib.shishkin.sl.task.PicassoExecutor
 
 object ServiceLocatorSingleton {
     val instance = ServiceLocator()
@@ -41,6 +44,10 @@ class ServiceLocator : AbsServiceLocator() {
 
         registerProvider(NotificationProvider.NAME)
         registerProvider(LocationUnion.NAME)
+
+        registerProvider(NetExecutor.NAME)
+        registerProvider(DbExecutor.NAME)
+
         registerProvider(NetProvider.NAME)
         registerProvider(NetCbProvider.NAME)
         registerProvider(NetImageProvider.NAME)
