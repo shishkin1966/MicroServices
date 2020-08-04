@@ -4,27 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.LinearLayout
-import com.jaredrummler.materialspinner.MaterialSpinner
-import lib.shishkin.common.RippleTextView
-import lib.shishkin.common.toDoubleValue
 import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
-import lib.shishkin.microservices.action.CreateAccountTransaction
-import lib.shishkin.microservices.data.Account
-import lib.shishkin.microservices.data.Currency
-import lib.shishkin.microservices.observe.EditTextDecimalObservable
-import lib.shishkin.microservices.observe.EditTextLongObservable
-import lib.shishkin.microservices.observe.EditTextObservable
-import lib.shishkin.microservices.screen.home.HomeModel
-import lib.shishkin.microservices.screen.home.HomePresenter
 import lib.shishkin.sl.action.ApplicationAction
 import lib.shishkin.sl.action.IAction
 import lib.shishkin.sl.action.handler.FragmentActionHandler
 import lib.shishkin.sl.model.IModel
 import lib.shishkin.sl.ui.AbsContentFragment
-import java.util.*
 
 
 class MoreFragment : AbsContentFragment() {

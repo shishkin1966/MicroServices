@@ -29,9 +29,13 @@ class TickerData {
             return tickers!!
         } else {
             val list: ArrayList<Ticker> = ArrayList();
-            list.addAll(ApplicationUtils.filter<Ticker>(tickers as Collection<Ticker>, Predicate { input ->
-                input?.name?.contains(filter!!, true)!!
-            }).toList())
+            list.addAll(
+                ApplicationUtils.filter<Ticker>(
+                    tickers as Collection<Ticker>,
+                    Predicate { input ->
+                        input?.name?.contains(filter!!, true)!!
+                    }).toList()
+            )
             list.sortWith(Comparator { o1, o2 -> o1.symbol!!.compareTo(o2.symbol!!, true) })
             return list
         }

@@ -13,7 +13,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import lib.shishkin.common.ApplicationUtils
 import lib.shishkin.microservices.ApplicationConstant
-import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.R
 import lib.shishkin.microservices.screen.main.MainActivity
 import lib.shishkin.sl.provider.ApplicationProvider
@@ -36,7 +35,7 @@ class NotificationO : INotificationShortProvider {
         show(title, message)
     }
 
-    override fun getNotification(title: String?, message: String) : Notification {
+    override fun getNotification(title: String?, message: String): Notification {
         val context = ApplicationProvider.appContext
 
         var channel: NotificationChannel? = nm.getNotificationChannel(GROUP_NAME)

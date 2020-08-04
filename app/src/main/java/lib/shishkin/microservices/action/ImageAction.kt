@@ -17,15 +17,15 @@ class ImageAction(view: ImageView, private var url: String) :
         this.view = WeakReference(view)
     }
 
-    fun getView() : ImageView? {
+    fun getView(): ImageView? {
         return view?.get()
     }
 
-    fun getUrl() : String {
+    fun getUrl(): String {
         return url
     }
 
-    fun getRank() : Int {
+    fun getRank(): Int {
         return rank
     }
 
@@ -34,7 +34,7 @@ class ImageAction(view: ImageView, private var url: String) :
         return this
     }
 
-    fun isWithCache() : Boolean {
+    fun isWithCache(): Boolean {
         return isWithCache
     }
 
@@ -43,7 +43,7 @@ class ImageAction(view: ImageView, private var url: String) :
         return this
     }
 
-    fun getPlaceHolder() : Int {
+    fun getPlaceHolder(): Int {
         return placeHolder
     }
 
@@ -52,7 +52,7 @@ class ImageAction(view: ImageView, private var url: String) :
         return this
     }
 
-    fun getErrorHolder() : Int {
+    fun getErrorHolder(): Int {
         return errorHolder
     }
 

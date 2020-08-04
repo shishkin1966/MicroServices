@@ -127,7 +127,7 @@ class App : ApplicationProvider() {
         return BuildConfig.APPLICATION_ID
     }
 
-    fun addNotification(title : String?, message : String) {
+    fun addNotification(title: String?, message: String) {
         val provider = serviceLocator?.get<INotificationProvider>(
             NotificationProvider.NAME
         )

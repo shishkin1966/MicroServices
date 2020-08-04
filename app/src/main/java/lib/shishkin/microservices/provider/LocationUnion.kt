@@ -51,12 +51,13 @@ class LocationUnion : AbsSmallUnion<ILocationSubscriber>(),
             override fun onLocationAvailability(locationAvailability: LocationAvailability?) {
                 if (!locationAvailability!!.isLocationAvailable) {
                     val context = ApplicationProvider.appContext
-                    ApplicationSingleton.instance.activityProvider.getActivity<IActivity>()?.addAction(
-                        ShowMessageAction(
-                            context.getString(R.string.location_error),
-                            ApplicationUtils.MESSAGE_TYPE_WARNING
+                    ApplicationSingleton.instance.activityProvider.getActivity<IActivity>()
+                        ?.addAction(
+                            ShowMessageAction(
+                                context.getString(R.string.location_error),
+                                ApplicationUtils.MESSAGE_TYPE_WARNING
+                            )
                         )
-                    )
                 }
             }
 

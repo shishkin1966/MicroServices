@@ -47,6 +47,7 @@ class ServiceLocator : AbsServiceLocator() {
 
         registerProvider(NetExecutor.NAME)
         registerProvider(DbExecutor.NAME)
+        registerProvider(PicassoExecutor.NAME)
 
         registerProvider(NetProvider.NAME)
         registerProvider(NetCbProvider.NAME)
