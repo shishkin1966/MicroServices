@@ -8,6 +8,7 @@ import lib.shishkin.sl.AbsProvider
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.provider.ApplicationProvider
 import lib.shishkin.sl.task.NetExecutor
+import lib.shishkin.sl.task.PicassoExecutor
 import java.lang.Exception
 import java.util.concurrent.ExecutorService
 
@@ -21,9 +22,11 @@ class NetImageProvider : AbsProvider(), INetImageProvider {
 
     override fun downloadImage(action: ImageAction) {
         if (picasso == null) {
-            val executor = ApplicationSingleton.instance.get<NetExecutor>(NetExecutor.NAME)
+            val executor = ApplicationSingleton.instance.get<PicassoExecutor>(PicassoExecutor.NAME)
             if (executor is ExecutorService) {
                 picasso = Picasso.Builder(ApplicationProvider.appContext).executor(executor).build()
+            } else {
+                picasso = Picasso.Builder(ApplicationProvider.appContext).build()
             }
         }
         runOnUiThread(Runnable {

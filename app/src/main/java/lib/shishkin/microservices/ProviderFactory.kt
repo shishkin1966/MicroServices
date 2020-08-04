@@ -9,6 +9,7 @@ import lib.shishkin.sl.provider.*
 import lib.shishkin.sl.task.CommonExecutor
 import lib.shishkin.sl.task.DbExecutor
 import lib.shishkin.sl.task.NetExecutor
+import lib.shishkin.sl.task.PicassoExecutor
 
 object ProviderFactorySingleton {
     val instance = ProviderFactory()
@@ -37,6 +38,7 @@ class ProviderFactory : IProviderFactory, INamed {
                 NetExecutor.NAME -> NetExecutor()
                 NetProvider.NAME -> NetProvider()
                 NetCbProvider.NAME -> NetCbProvider()
+                PicassoExecutor.NAME -> PicassoExecutor()
                 NetImageProvider.NAME -> NetImageProvider()
                 else -> Class.forName(name).newInstance() as IProvider
             }
