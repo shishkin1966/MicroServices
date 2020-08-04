@@ -5,7 +5,8 @@ import lib.shishkin.microservices.ApplicationSingleton
 import lib.shishkin.microservices.data.ValCurs
 import lib.shishkin.sl.request.AbsNetResultMessageRequest
 
-class GetValCursRequest(subscribe: String, private val date : String) : AbsNetResultMessageRequest(subscribe) {
+class GetValCursRequest(subscribe: String, private val date: String) :
+    AbsNetResultMessageRequest(subscribe) {
     companion object {
         const val NAME = "GetValCursRequest"
     }

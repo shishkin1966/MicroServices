@@ -3,10 +3,10 @@ package lib.shishkin.microservices.observe
 import android.text.Editable
 import android.widget.EditText
 import lib.shishkin.common.left
+import lib.shishkin.common.toLongValue
 import lib.shishkin.common.token
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
-import lib.shishkin.common.toLongValue
 import java.util.*
 
 

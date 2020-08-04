@@ -6,8 +6,8 @@ import lib.shishkin.microservices.data.Valute
 
 class ValCursData {
     var valCurs: ValCurs? = null
-    private val nameComparator = Comparator ()
-        { o1: Valute, o2: Valute -> o1.name!!.compareTo(o2.name!!) }
+    private val nameComparator = Comparator()
+    { o1: Valute, o2: Valute -> o1.name!!.compareTo(o2.name!!) }
 
     fun getData(): List<Valute> {
         val data = ArrayList<Valute>()

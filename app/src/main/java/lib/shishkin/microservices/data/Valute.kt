@@ -5,7 +5,7 @@ import org.simpleframework.xml.Element
 import org.simpleframework.xml.Root
 
 @Root(name = "Valute")
-class Valute  {
+class Valute {
     @get:Attribute(name = "ID")
     @set:Attribute(name = "ID")
     var id: String? = null

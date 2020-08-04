@@ -66,7 +66,7 @@ class NotificationM : INotificationShortProvider {
         if (!title.isNullOrEmpty()) {
             notificationBuilder.setContentTitle(title)
         }
-       return(notificationBuilder.build())
+        return (notificationBuilder.build())
     }
 
     override fun clear() {

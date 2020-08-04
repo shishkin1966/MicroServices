@@ -1,7 +1,7 @@
 package lib.shishkin.microservices.provider
 
-import lib.shishkin.sl.IProvider
 import lib.shishkin.microservices.action.ImageAction
+import lib.shishkin.sl.IProvider
 
 interface INetImageProvider : IProvider {
     /**

@@ -39,7 +39,7 @@ class HomeData {
         currencies = null
     }
 
-    fun isFull() : Boolean {
+    fun isFull(): Boolean {
         //return (accounts != null && balance != null &&  deposits != null && cards != null && currencies != null)
         return (accounts != null && balance != null && currencies != null)
     }

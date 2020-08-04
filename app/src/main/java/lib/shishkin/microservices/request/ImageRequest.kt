@@ -17,7 +17,8 @@ class ImageRequest(private val action: ImageAction) : AbsRequest() {
 
     override fun run() {
         if (isValid()) {
-            val provider = ApplicationSingleton.instance.get<NetImageProvider>(NetImageProvider.NAME)
+            val provider =
+                ApplicationSingleton.instance.get<NetImageProvider>(NetImageProvider.NAME)
             provider?.downloadImage(action);
         }
     }

@@ -3,7 +3,6 @@ package lib.shishkin.microservices.provider.notification
 import android.app.Notification
 import lib.shishkin.microservices.PreferencesUtils
 import lib.shishkin.sl.AbsProvider
-import lib.shishkin.sl.AbsShortLiveProvider
 import lib.shishkin.sl.IProvider
 import lib.shishkin.sl.provider.ApplicationProvider
 
