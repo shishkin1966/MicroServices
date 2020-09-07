@@ -40,6 +40,7 @@ class ProviderFactory : IProviderFactory, INamed {
                 NetCbProvider.NAME -> NetCbProvider()
                 PicassoExecutor.NAME -> PicassoExecutor()
                 NetImageProvider.NAME -> NetImageProvider()
+                DesktopProvider.NAME -> DesktopProvider()
                 else -> Class.forName(name).newInstance() as IProvider
             }
         } catch (e: Exception) {

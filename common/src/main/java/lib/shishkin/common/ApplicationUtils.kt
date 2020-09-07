@@ -495,6 +495,19 @@ class ApplicationUtils {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
             return intent;
         }
+
+        @JvmStatic
+        fun getResourceId(context: Context?, typeResource: String?, nameResource: String?): Int {
+            // Example: context.getResources().getIdentifier("widget_blue", "layout", context.getPackageName())
+            return context?.resources?.getIdentifier(
+                nameResource,
+                typeResource,
+                context.packageName
+            )
+                ?: 0
+        }
+
+
     }
 
 }
